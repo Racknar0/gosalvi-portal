@@ -130,10 +130,27 @@
 
   .koty-section__features {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
 
   .koty-section__features li {
-    border-radius: 18px;
+    display: grid;
+    padding: 12px 14px;
+    grid-template-columns: 24px minmax(0, 1fr);
+    align-items: center;
+    gap: 2px 12px;
+    border-radius: 14px;
+  }
+
+  .koty-section__features svg {
+    grid-row: 1 / span 2;
+    margin-bottom: 0;
+  }
+
+  .koty-section__features h3,
+  .koty-section__features p {
+    grid-column: 2;
+    margin: 0;
   }
 }
 

@@ -44,3 +44,15 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Validación
 - Comprobar que el código compile ejecutando `npm run lint` 
 - Al terminar, listar los archivos modificados y los puntos pendientes.
+
+
+## Despliegue de producción — Gosalvi
+- El frontend de Gosalvi se publica desde la rama `master` del repositorio `Racknar0/gosalvi-portal`.
+- Para cambios del frontend, ejecuta `u_front_gosavi` con privilegios de administrador del VPS. Debe desplegar únicamente el frontend Gosalvi y reiniciar el proceso PM2 `gosalvi-front`.
+- El frontend de producción está en `/opt/gosalvi/front`. Nginx Proxy Manager envía `gosalvi.com` y `www.gosalvi.com` al proceso Next en `172.19.0.1:3200`.
+- Los cambios deben estar commiteados y subidos a `master` antes de desplegar. El comando debe desplegar el último commit publicado; no despliegues cambios locales sin publicar.
+- No ejecutes `git pull`, compilaciones ni cambios de symlink directamente en `/opt/gosalvi/front`; usa el procedimiento oficial de despliegue para Gosalvi.
+- No muestres, sobrescribas ni subas los `.env` de producción.
+- No uses comandos, procesos ni rutas de Orbital Ctrl para desplegar Gosalvi.
+- El backend Gosalvi aún no tiene un proceso PM2 de producción confirmado. No uses `u_back_gosavi` hasta verificar que apunta al backend Gosalvi y documentar su ruta y nombre de proceso PM2.
+- Si el comando de despliegue o el acceso SSH no está disponible, informa el bloqueo y no simules un despliegue.

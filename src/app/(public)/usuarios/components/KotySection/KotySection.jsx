@@ -23,7 +23,7 @@ export default function KotySection() {
         <div className="koty-section__content">
           <span className="koty-section__badge"><Icon icon={awardIcon} aria-hidden="true" /> Conocé a Koty · Guardián de Salvi</span>
           <h2 id="koty-section-title">Cada rescate, una nueva aventura</h2>
-          <p>Con cada pack que salvás, sumás experiencia, mantenés tu racha y desbloqueás medallas. Rescatá comida y ayudá a Koty a subir de nivel.</p>
+          <p>Salvá packs, sumá experiencia y ayudá a Koty a subir de nivel.</p>
           <ul className="koty-section__features">
             {features.map(({ icon, title, description }) => (
               <li key={title}>
