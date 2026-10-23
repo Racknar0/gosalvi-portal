@@ -54,5 +54,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - No ejecutes `git pull`, compilaciones ni cambios de symlink directamente en `/opt/gosalvi/front`; usa el procedimiento oficial de despliegue para Gosalvi.
 - No muestres, sobrescribas ni subas los `.env` de producción.
 - No uses comandos, procesos ni rutas de Orbital Ctrl para desplegar Gosalvi.
-- El backend Gosalvi aún no tiene un proceso PM2 de producción confirmado. No uses `u_back_gosavi` hasta verificar que apunta al backend Gosalvi y documentar su ruta y nombre de proceso PM2.
+- El comando `u_back_gosavi` está preparado para `Racknar0/gosalvi_back`, rama `master`, enlace `/opt/gosalvi/back` y proceso exclusivo `gosalvi-back` en `172.19.0.1:3201`. Su instalación no implica que el backend ya esté desplegado. Antes del primer despliegue, preparar la base de datos Gosalvi y `/opt/gosalvi/shared/back/.env.production` y ejecutar `u_back_gosavi --check`; consultar `back/AGENTS.md` en el workspace.
 - Si el comando de despliegue o el acceso SSH no está disponible, informa el bloqueo y no simules un despliegue.
