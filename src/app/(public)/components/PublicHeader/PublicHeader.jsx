@@ -80,7 +80,7 @@ export default function PublicHeader() {
   return (
     <header className="public-header">
       <div className="public-header__inner">
-        <Link className="public-header__brand" href="/" aria-label="Salvi, inicio" onClick={closeMenu}>
+        <Link className="public-header__brand" href="/usuarios" aria-label="Salvi, inicio" onClick={closeMenu}>
           <Image src="/assets/brand/salvi.svg" alt="Salvi · Salvá Comida" width={150} height={50} priority />
         </Link>
 

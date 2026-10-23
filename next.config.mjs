@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  redirects() {
+    return [{ source: '/', destination: '/usuarios', permanent: false }];
+  },
   cacheComponents: true,
   partialPrefetching: true,
   reactCompiler: true,
