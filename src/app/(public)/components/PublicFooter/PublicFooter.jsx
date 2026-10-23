@@ -1,8 +1,12 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react/offline';
 import storeIcon from '@iconify-icons/lucide/store';
 import sproutIcon from '@iconify-icons/lucide/sprout';
+import { useCountry } from '@/helpers/countryPreference';
+import { publicFooterCopy } from './PublicFooter.copy';
 import './PublicFooter.scss';
 
 const socials = [
@@ -16,8 +20,8 @@ const groups = [
   {
     title: 'Comercios aliados',
     links: [
-      { label: 'Sumá tu local', href: '/comercios/sumar-local', icon: storeIcon, primary: true },
-      { label: 'Ingresá al portal', href: '/comercios/portal-socios' },
+      { label: 'Quiero sumar mi local', href: '/socios/registro', icon: storeIcon, primary: true },
+      { label: 'Ingresá al portal', href: '/socios/login' },
     ],
   },
   {
@@ -31,13 +35,14 @@ const groups = [
 ];
 
 export default function PublicFooter() {
+  const copy = publicFooterCopy[useCountry()];
   return (
     <footer className="public-footer">
       <div className="public-footer__inner">
         <div className="public-footer__columns">
           <div className="public-footer__brand">
             <Link href="/usuarios" aria-label="Salvi, inicio"><Image src="/assets/brand/salvi.svg" alt="Salvi" width={110} height={38} /></Link>
-            <p>Rescatamos comida, reducimos el desperdicio y cuidamos tu bolsillo.</p>
+            <p>{copy.description}</p>
             <div className="public-footer__socials">
               {socials.map(({ name, asset, href }) => href ? (
                 <a key={asset} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${name} de Salvi`}>
@@ -55,11 +60,18 @@ export default function PublicFooter() {
               <h2>{title}</h2>
               <ul>
                 {links.map(({ label, href, icon, primary }) => (
-                  <li key={href}>
+                  <li key={label}>
+                    {href ? (
                     <Link href={href} className={primary ? 'public-footer__highlight' : undefined}>
                       {icon && <Icon icon={icon} aria-hidden="true" />}
                       <span>{label}</span>
                     </Link>
+                    ) : (
+                      <span role="link" aria-disabled="true" title="Función pendiente" className={primary ? 'public-footer__highlight' : undefined}>
+                        {icon && <Icon icon={icon} aria-hidden="true" />}
+                        <span>{label}</span>
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -68,7 +80,7 @@ export default function PublicFooter() {
         </div>
         <div className="public-footer__bottom">
           <p>© 2026 Salvi Food Technologies. Todos los derechos reservados.</p>
-          <p>Salvá comida deliciosa, cuidá tu bolsillo y enfriá el planeta <Icon icon={sproutIcon} aria-hidden="true" /></p>
+          <p>{copy.slogan} <Icon icon={sproutIcon} aria-hidden="true" /></p>
         </div>
       </div>
     </footer>

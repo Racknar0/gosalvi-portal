@@ -1,5 +1,7 @@
-import Image from 'next/image';
+'use client';
+
 import Link from 'next/link';
+import Image from 'next/image';
 import { Icon } from '@iconify/react/offline';
 import userPlusIcon from '@iconify-icons/lucide/user-plus';
 import arrowRightIcon from '@iconify-icons/lucide/arrow-right';
@@ -10,44 +12,46 @@ import circleCheckIcon from '@iconify-icons/lucide/circle-check';
 import shieldCheckIcon from '@iconify-icons/lucide/shield-check';
 import leafIcon from '@iconify-icons/lucide/leaf';
 import croissantIcon from '@iconify-icons/fluent-emoji-flat/croissant';
+import { useCountry } from '@/helpers/countryPreference';
+import { usersHeroCopy } from './UsersHero.copy';
 import './UsersHero.scss';
 
 export default function UsersHero() {
+  const copy = usersHeroCopy[useCountry()];
   return (
     <section className="users-hero" id="inicio" aria-labelledby="users-hero-title">
       <div className="users-hero__inner">
         <div className="users-hero__content">
           <h1 id="users-hero-title">
-            Salvá comida rica con hasta un{' '}
-            <span>70% de descuento</span>
+            {copy.headline}{' '}
+            <span>{copy.discount}</span>
           </h1>
           <p className="users-hero__description">
-            Rescatá los excedentes del día de tus panaderías, cafeterías y restaurantes favoritos.
-            Comida en perfecto estado, menos desperdicio y más ahorro para vos.
+            {copy.description}
           </p>
 
           <div className="users-hero__actions">
-            <Link className="users-hero__button users-hero__button--primary" href="/crear-cuenta">
+            <Link href="/crear-cuenta" className="users-hero__button users-hero__button--primary">
               <Icon icon={userPlusIcon} aria-hidden="true" />
-              Creá tu cuenta gratis
+              {copy.createAccount}
               <Icon className="users-hero__trailing-icon" icon={arrowRightIcon} aria-hidden="true" />
             </Link>
-            <Link className="users-hero__button users-hero__button--download" href="/descargar-app">
+            <a role="link" aria-disabled="true" title="Función pendiente" className="users-hero__button users-hero__button--download">
               <Icon icon={smartphoneIcon} aria-hidden="true" />
-              Descargá la app
+              {copy.download}
               <Icon className="users-hero__trailing-icon" icon={downloadIcon} aria-hidden="true" />
-            </Link>
+            </a>
           </div>
 
-          <Link className="users-hero__merchant-link" href="/comercios/sumar-local">
-            <span>¿Tenés un local? Sumate a Salvi</span>
+          <Link href="/socios/registro" className="users-hero__merchant-link">
+            <span>{copy.merchantLink}</span>
             <Icon icon={chevronRightIcon} aria-hidden="true" />
           </Link>
 
           <ul className="users-hero__benefits" aria-label="Beneficios de Salvi">
-            <li><Icon icon={circleCheckIcon} aria-hidden="true" /> Comida 100% fresca</li>
-            <li><Icon icon={shieldCheckIcon} aria-hidden="true" /> Pago seguro</li>
-            <li><Icon icon={leafIcon} aria-hidden="true" /> Impacto ecológico</li>
+            <li><Icon icon={circleCheckIcon} aria-hidden="true" /> {copy.benefits[0]}</li>
+            <li><Icon icon={shieldCheckIcon} aria-hidden="true" /> {copy.benefits[1]}</li>
+            <li><Icon icon={leafIcon} aria-hidden="true" /> {copy.benefits[2]}</li>
           </ul>
         </div>
 
@@ -61,16 +65,16 @@ export default function UsersHero() {
             <div className="users-hero__offer">
               <Icon icon={croissantIcon} aria-hidden="true" />
               <div>
-                <p>Pack Panadería Artesanal</p>
-                <span>70% OFF · Ahorrás $3.500</span>
+                <p>{copy.offer}</p>
+                <span>{copy.savings}</span>
               </div>
             </div>
 
             <div className="users-hero__quality">
               <span className="users-hero__quality-icon"><Icon icon={leafIcon} aria-hidden="true" /></span>
               <div>
-                <p>100% Calidad del Día</p>
-                <span>Cero desperdicio de comida</span>
+                <p>{copy.quality}</p>
+                <span>{copy.qualityDetail}</span>
               </div>
             </div>
           </div>

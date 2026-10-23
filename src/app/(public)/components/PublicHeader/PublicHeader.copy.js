@@ -1,0 +1,16 @@
+export const publicHeaderCopy = {
+  AR: {
+    audience: ['Para vos', 'Para tu negocio'], experienceLabel: 'Elegí tu experiencia', download: 'Descargá la app', downloadLabel: 'Descargá la app en Google Play o App Store',
+    customerAccount: 'Creá tu cuenta', businessButton: 'Mi local en Salvi', businessStart: 'Quiero sumar mi local', businessStartHint: 'Quiero empezar a vender en Salvi.', portal: 'Entrá al portal', portalHint: 'Ya soy comercio aliado.',
+    mobileLinks: ['Quiero sumar mi local', 'Entrá al portal'], mobileBusiness: 'Mi local en Salvi', koty: 'Conocé a Koty',
+    ariaNav: ['Navegación para usuarios', 'Navegación para comercios'], ariaBusinessMenu: 'Mi local en Salvi',
+    customerNav: ['Inicio', 'Cómo funciona', 'Qué podés rescatar', 'Dudas frecuentes'], merchantNav: ['Inicio', 'Beneficios', 'Cómo funciona', 'Dudas frecuentes'],
+  },
+  CO: {
+    audience: ['Para ti', 'Para tu negocio'], experienceLabel: 'Elige tu experiencia', download: 'Descarga la app', downloadLabel: 'Descarga la app en Google Play o App Store',
+    customerAccount: 'Crea tu cuenta', businessButton: 'Mi negocio en Salvi', businessStart: 'Registra tu negocio', businessStartHint: 'Empieza a ofrecer tus productos en Salvi.', portal: 'Ingresa al portal', portalHint: 'Ya tengo mi negocio en Salvi.',
+    mobileLinks: ['Registra tu negocio', 'Ingresa al portal'], mobileBusiness: 'Mi negocio en Salvi', koty: 'Conoce a Koty',
+    ariaNav: ['Navegación para usuarios', 'Navegación para negocios'], ariaBusinessMenu: 'Mi negocio en Salvi',
+    customerNav: ['Inicio', 'Cómo funciona', 'Qué puedes encontrar', 'Preguntas frecuentes'], merchantNav: ['Inicio', 'Beneficios', 'Cómo funciona', 'Preguntas frecuentes'],
+  },
+};

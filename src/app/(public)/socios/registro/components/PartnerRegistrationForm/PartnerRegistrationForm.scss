@@ -1,0 +1,404 @@
+.partner-register__models {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.partner-register__models legend {
+  max-width: 100%;
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.partner-register__models > div {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.partner-register__models button {
+  padding: 12px;
+  border: 1px solid #fde8c8;
+  border-radius: 16px;
+  background: #fff;
+  color: #4a2515;
+  text-align: left;
+}
+
+.partner-register__models strong {
+  display: flex;
+  margin-bottom: 4px;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+}
+
+.partner-register__models svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  color: #f5842b;
+}
+
+.partner-register__models button > span {
+  display: block;
+  color: #76533f;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.partner-register__models button[aria-pressed="true"] {
+  border-color: #f5842b;
+  background: #fffbeb;
+  box-shadow: 0 0 0 2px #fde8c8;
+}
+
+.partner-register__models button[data-model="franchisee"] svg {
+  color: #2ba84a;
+}
+
+.partner-register__models button[data-model="franchisee"][aria-pressed="true"] {
+  border-color: #2ba84a;
+  background: #ecfdf5;
+  box-shadow: 0 0 0 2px #c5eed3;
+}
+
+.partner-register__models button[data-model="franchisor"] svg {
+  color: #7e22ce;
+}
+
+.partner-register__models button[data-model="franchisor"][aria-pressed="true"] {
+  border-color: #a855f7;
+  background: #faf5ff;
+  box-shadow: 0 0 0 2px #e9d5ff;
+}
+
+.partner-register__models button[data-model="holding"] svg {
+  color: #1d4ed8;
+}
+
+.partner-register__models button[data-model="holding"][aria-pressed="true"] {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  box-shadow: 0 0 0 2px #bfdbfe;
+}
+
+.partner-register__info {
+  padding: 12px;
+  border: 1px solid #fde68a;
+  border-radius: 20px;
+  background: linear-gradient(110deg, #fffbeb, #ecfdf5);
+  color: #78350f;
+}
+
+.partner-register__info summary {
+  display: flex;
+  margin: 0 0 8px;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+}
+
+.partner-register__info > div {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.partner-register__info p {
+  display: flex;
+  margin: 0;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.partner-register__info svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  color: #2ba84a;
+}
+
+.partner-register__info summary svg {
+  color: #f5842b;
+}
+
+.partner-register__fields,
+.partner-register__contact {
+  display: grid;
+  gap: 20px;
+}
+
+.partner-register__branches,
+.partner-register__contact {
+  padding-top: 12px;
+  border-top: 1px solid #fde8c8;
+}
+
+.partner-register__branch-heading {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.partner-register__branch-heading strong,
+.partner-register__branch-heading label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+}
+
+.partner-register__branch-heading svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  color: #f5842b;
+}
+
+.partner-register__branch-heading button {
+  display: inline-flex;
+  padding: 4px 8px;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  border-radius: 12px;
+  background: #d1fae5;
+  color: #065f46;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.partner-register__branch-heading small {
+  padding: 2px 5px;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+}
+
+.partner-register__optional {
+  color: #806958;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.partner-register__branch {
+  display: grid;
+  margin-top: 12px;
+  padding: 20px;
+  gap: 16px;
+  border: 1px solid #fde8c8;
+  border-radius: 18px;
+  background: #fff8f0;
+}
+
+.partner-form .partner-register__branch input {
+  background: #fff;
+}
+
+.partner-register__brand-box {
+  display: grid;
+  min-width: 0;
+  margin: 0;
+  padding: 14px;
+  gap: 10px;
+  border: 1px solid #a7f3d0;
+  border-radius: 18px;
+}
+
+.partner-register__brand-box p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.partner-register__brand-box--green {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.partner-register__brand-box--purple {
+  border-color: #e9d5ff;
+  background: #faf5ff;
+  color: #581c87;
+}
+
+.partner-register__brand-box--purple legend {
+  float: left;
+  width: 100%;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.partner-register__brand-box--purple > label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.partner-register__brand-box--purple input {
+  accent-color: #9333ea;
+}
+
+.partner-register__brand-box--blue {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.partner-register__section-title {
+  margin: 0;
+  padding-top: 24px;
+  border-top: 1px solid #fde8c8;
+  color: #4a2515;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.partner-register__fields,
+.partner-register__contact {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.partner-register__fields > :not(.partner-form__field),
+.partner-register__contact > :not(.partner-form__field) {
+  grid-column: 1 / -1;
+}
+
+.partner-register__branch {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+.partner-register__branch > .partner-register__branch-heading {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #fde8c8;
+  align-items: center;
+  flex-direction: row;
+}
+
+.partner-register__branch > .partner-register__branch-heading button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  flex-shrink: 0;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.partner-register__contact {
+  border: 0;
+  padding-top: 0;
+}
+
+.partner-register__info summary {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.partner-register__info .partner-register__info-chevron {
+  margin-left: auto;
+  color: #1e7a35;
+}
+
+.partner-register__info[open] .partner-register__info-chevron {
+  transform: rotate(180deg);
+}
+
+.partner-register__brand-select {
+  position: relative;
+}
+
+.partner-register__brand-select > svg {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  width: 22px;
+  height: 22px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.partner-register__brand-select select {
+  padding-left: 46px;
+}
+
+.partner-register__terms {
+  display: flex;
+  padding-top: 8px;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.partner-register__terms input {
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  flex: 0 0 auto;
+  accent-color: #f5842b;
+}
+
+.partner-register__terms a {
+  color: #e0721f;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.partner-register .partner-form__submit {
+  background: #f5842b;
+}
+
+@media (max-width: 400px) {
+  .partner-register__branch-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .partner-register__info > div {
+  margin-top: 16px;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .partner-register__models > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .partner-register__branch {
+    padding: 16px;
+  }
+
+  .partner-register__fields,
+  .partner-register__contact,
+  .partner-register__branch,
+  .partner-register__info > div {
+    grid-template-columns: 1fr;
+  }
+
+  .partner-register__models button {
+    padding: 12px;
+  }
+}

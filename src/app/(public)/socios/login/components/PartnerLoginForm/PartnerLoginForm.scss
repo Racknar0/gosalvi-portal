@@ -1,0 +1,57 @@
+.partner-login__input {
+  position: relative;
+  display: block;
+}
+
+.partner-login__input > svg {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  width: 16px;
+  height: 16px;
+  color: #b5a59b;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.partner-form .partner-login__input input {
+  padding: 12px 44px 12px 40px;
+  border-radius: 14px;
+}
+
+.partner-login__input button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  width: 44px;
+  height: 100%;
+  place-items: center;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: #b5a59b;
+}
+
+.partner-login__input button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.partner-login__password-label {
+  display: flex;
+  margin-bottom: 4px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.partner-login__password-label button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #1e7a35;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+}

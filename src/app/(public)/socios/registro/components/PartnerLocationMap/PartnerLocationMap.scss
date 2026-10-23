@@ -1,0 +1,62 @@
+.partner-location-map {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #f1dfc8;
+  border-radius: 18px;
+  background: #f7f3ed;
+}
+
+.partner-location-map__canvas {
+  width: 100%;
+  height: 300px;
+}
+
+.partner-location-map__status {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  padding: 24px;
+  place-content: center;
+  background: #f7f3ed;
+  color: #76533f;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .partner-location-map__canvas {
+    height: 250px;
+  }
+}
+
+.partner-location-map__canvas {
+  z-index: 0;
+}
+
+.partner-location-map__marker > span {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 2px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  background: #1e7a35;
+  box-shadow: 0 3px 10px #28160f44;
+  transform: rotate(-45deg);
+}
+
+.partner-location-map__marker svg {
+  width: 23px;
+  height: 23px;
+  color: #fff;
+  transform: rotate(45deg);
+}
+
+.partner-location-map__marker:focus-visible > span {
+  outline: 3px solid #f5842b;
+  outline-offset: 3px;
+}
+
+.partner-location-map .leaflet-control-attribution {
+  max-width: 100%;
+  font-size: 11px;
+}

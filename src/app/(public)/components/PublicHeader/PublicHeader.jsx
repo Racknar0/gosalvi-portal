@@ -1,5 +1,7 @@
 "use client";
 
+
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -15,6 +17,9 @@ import logInIcon from '@iconify-icons/lucide/log-in';
 import menuIcon from '@iconify-icons/lucide/menu';
 import closeIcon from '@iconify-icons/lucide/x';
 import pawPrintIcon from '@iconify-icons/lucide/paw-print';
+import CountrySelector from '@/components/CountrySelector/CountrySelector';
+import { useCountry } from '@/helpers/countryPreference';
+import { publicHeaderCopy } from './PublicHeader.copy';
 import './PublicHeader.scss';
 
 const customerLinks = [
@@ -44,18 +49,29 @@ const getHash = () => window.location.hash || '#inicio';
 const getServerHash = () => '#inicio';
 
 export default function PublicHeader() {
+  const copy = publicHeaderCopy[useCountry()];
   const pathname = usePathname();
   const hash = useSyncExternalStore(subscribeToHash, getHash, getServerHash);
   const [menuOpen, setMenuOpen] = useState(false);
   const [businessOpen, setBusinessOpen] = useState(false);
   const businessRef = useRef(null);
   const menuToggleRef = useRef(null);
-  const merchant = pathname.startsWith('/comercios');
-  const links = merchant ? merchantLinks : customerLinks;
+  const merchant = pathname.startsWith('/comercios') || pathname.startsWith('/socios');
+  const links = (merchant ? merchantLinks : customerLinks).map((link, index) => ({
+    ...link,
+    label: (merchant ? copy.merchantNav : copy.customerNav)[index],
+  }));
   const closeMenu = () => {
     setMenuOpen(false);
     setBusinessOpen(false);
   };
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [menuOpen]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -99,10 +115,10 @@ export default function PublicHeader() {
 
         <nav className="public-header__audience" aria-label="Experiencias Salvi">
           <Link className={!merchant ? 'is-active' : ''} href="/usuarios" onClick={closeMenu} aria-current={pathname === '/usuarios' ? 'page' : undefined}>
-            <Icon className="public-header__audience-icon" icon={avocadoIcon} aria-hidden="true" /> Para vos
+            <Icon className="public-header__audience-icon" icon={avocadoIcon} aria-hidden="true" /> {copy.audience[0]}
           </Link>
           <Link className={merchant ? 'is-active' : ''} href="/comercios" onClick={closeMenu} aria-current={pathname === '/comercios' ? 'page' : undefined}>
-            <Icon className="public-header__audience-icon" icon={shopIcon} aria-hidden="true" /> Para tu negocio
+            <Icon className="public-header__audience-icon" icon={shopIcon} aria-hidden="true" /> {copy.audience[1]}
           </Link>
         </nav>
 
@@ -113,50 +129,62 @@ export default function PublicHeader() {
             }}>
               <button className="public-header__primary public-header__primary--merchant" type="button" aria-expanded={businessOpen} aria-controls="business-navigation" onClick={() => setBusinessOpen((open) => !open)}>
                 <Icon className="public-header__action-icon" icon={storeIcon} aria-hidden="true" />
-                Mi local en Salvi
+                {copy.businessButton}
                 <Icon className={`public-header__chevron ${businessOpen ? 'is-open' : ''}`} icon={chevronDownIcon} aria-hidden="true" />
               </button>
               {businessOpen && (
-                <nav className="public-header__business-menu" id="business-navigation" aria-label="Mi local en Salvi">
-                  <Link href="/comercios/sumar-local" onClick={closeMenu}>
-                    <strong>Sumá tu local <Icon icon={plusIcon} aria-hidden="true" /></strong>
-                    <span>Quiero empezar a vender en Salvi.</span>
+                <nav className="public-header__business-menu" id="business-navigation" aria-label={copy.ariaBusinessMenu}>
+                  <Link href="/socios/registro" onClick={closeMenu}>
+                    <strong>{copy.businessStart} <Icon icon={plusIcon} aria-hidden="true" /></strong>
+                    <span>{copy.businessStartHint}</span>
                   </Link>
-                  <Link href="/comercios/portal-socios" onClick={closeMenu}>
-                    <strong>Entrá al portal <Icon icon={logInIcon} aria-hidden="true" /></strong>
-                    <span>Ya soy comercio aliado.</span>
+                  <Link href="/socios/login" onClick={closeMenu}>
+                    <strong>{copy.portal} <Icon icon={logInIcon} aria-hidden="true" /></strong>
+                    <span>{copy.portalHint}</span>
                   </Link>
                 </nav>
               )}
             </div>
           ) : (
-            <Link className="public-header__primary" href="/crear-cuenta" onClick={closeMenu}>
-              <Icon className="public-header__action-icon" icon={userPlusIcon} aria-hidden="true" /> Creá tu cuenta
+            <Link href="/crear-cuenta" className="public-header__primary" onClick={closeMenu}>
+              <Icon className="public-header__action-icon" icon={userPlusIcon} aria-hidden="true" /> {copy.customerAccount}
             </Link>
           )}
+          <CountrySelector className="country-selector--desktop" />
           <button ref={menuToggleRef} className="public-header__menu-toggle" type="button" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={menuOpen} aria-controls="public-mobile-panel" onClick={() => setMenuOpen((open) => !open)}>
             <Icon icon={menuOpen ? closeIcon : menuIcon} aria-hidden="true" />
           </button>
         </div>
       </div>
 
-      <div id="public-mobile-panel" className={`public-header__secondary ${menuOpen ? 'is-open' : ''}`}>
-        <nav className="public-header__audience public-header__mobile-audience" aria-label="Elegí tu experiencia">
+      {menuOpen && <button className="public-header__scrim" type="button" aria-label="Cerrar menú" onClick={closeMenu} />}
+      <div id="public-mobile-panel" className={`public-header__secondary ${menuOpen ? 'is-open' : ''}`} aria-label="Menú principal">
+        <div className="public-header__drawer-heading">
+          <span>Menú</span>
+          <button className="public-header__drawer-close" type="button" aria-label="Cerrar menú" onClick={closeMenu}>
+            <Icon icon={closeIcon} aria-hidden="true" />
+          </button>
+        </div>
+        <div className="public-header__country-row">
+          <span>País</span>
+          <CountrySelector className="country-selector--mobile" />
+        </div>
+        <nav className="public-header__audience public-header__mobile-audience" aria-label={copy.experienceLabel}>
           <Link className={!merchant ? 'is-active' : ''} href="/usuarios" onClick={() => setBusinessOpen(false)} aria-current={pathname === '/usuarios' ? 'page' : undefined}>
-            <Icon className="public-header__audience-icon" icon={avocadoIcon} aria-hidden="true" /> Para vos
+            <Icon className="public-header__audience-icon" icon={avocadoIcon} aria-hidden="true" /> {copy.audience[0]}
           </Link>
           <Link className={merchant ? 'is-active' : ''} href="/comercios" onClick={() => setBusinessOpen(false)} aria-current={pathname === '/comercios' ? 'page' : undefined}>
-            <Icon className="public-header__audience-icon" icon={shopIcon} aria-hidden="true" /> Para tu negocio
+            <Icon className="public-header__audience-icon" icon={shopIcon} aria-hidden="true" /> {copy.audience[1]}
           </Link>
         </nav>
-        <nav id="public-navigation" className="public-header__links" aria-label={merchant ? 'Navegación para comercios' : 'Navegación para usuarios'}>
-          <Link className="public-header__download" href="/descargar-app" onClick={closeMenu} aria-label="Descargá la app en Google Play o App Store" aria-current={pathname === '/descargar-app' ? 'page' : undefined}>
+        <nav id="public-navigation" className="public-header__links" aria-label={copy.ariaNav[merchant ? 1 : 0]}>
+          <a role="link" aria-disabled="true" title="Función pendiente" className="public-header__download" aria-label={copy.downloadLabel}>
             <span className="public-header__platforms" aria-hidden="true">
               <Image src="/assets/stores/google-play.png" alt="" width={20} height={20} />
               <Image src="/assets/stores/app-store.webp" alt="" width={20} height={20} />
             </span>
-            Descargá la app
-          </Link>
+            {copy.download}
+          </a>
           <div className="public-header__sections">
           {links.map(({ label, href }) => (
             <a href={href} key={href} onClick={closeMenu} aria-current={hash === `#${href.split('#')[1]}` ? 'location' : undefined}>
@@ -167,17 +195,17 @@ export default function PublicHeader() {
           <div className="public-header__mobile-actions">
             {merchant ? (
               <>
-                <span>Mi local en Salvi</span>
-                <Link href="/comercios/sumar-local" className="public-header__primary public-header__primary--merchant" onClick={closeMenu}><Icon icon={storeIcon} aria-hidden="true" /> Sumá tu local</Link>
-                <Link href="/comercios/portal-socios" onClick={closeMenu}><Icon icon={logInIcon} aria-hidden="true" /> Entrá al portal</Link>
+                <span>{copy.mobileBusiness}</span>
+                <Link href="/socios/registro" className="public-header__primary public-header__primary--merchant" onClick={closeMenu}><Icon icon={storeIcon} aria-hidden="true" /> {copy.mobileLinks[0]}</Link>
+                <Link href="/socios/login" onClick={closeMenu}><Icon icon={logInIcon} aria-hidden="true" /> {copy.mobileLinks[1]}</Link>
               </>
             ) : (
-              <Link href="/crear-cuenta" className="public-header__primary" onClick={closeMenu}><Icon icon={userPlusIcon} aria-hidden="true" /> Creá tu cuenta</Link>
+              <Link href="/crear-cuenta" className="public-header__primary" onClick={closeMenu}><Icon icon={userPlusIcon} aria-hidden="true" /> {copy.customerAccount}</Link>
             )}
           </div>
           <a className="public-header__koty" href="/usuarios#koty" onClick={closeMenu} aria-current={!merchant && hash === '#koty' ? 'location' : undefined}>
             <Icon icon={pawPrintIcon} aria-hidden="true" />
-            Conocé a Koty
+            {copy.koty}
           </a>
         </nav>
       </div>

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { Icon } from '@iconify/react/offline';
 import chevronRightIcon from '@iconify-icons/lucide/chevron-right';
@@ -22,7 +21,7 @@ export default function UsersCategories() {
         <ul className="users-categories__grid">
           {categories.map(({ image, alt, name, description, discount }) => (
             <li key={name}>
-              <Link className="users-categories__card" href="/descargar-app" aria-label={`${name}: ver locales en la app`}>
+              <a role="link" aria-disabled="true" title="Función pendiente" className="users-categories__card" aria-label={`${name}: ver locales en la app`}>
                 <div className="users-categories__image">
                   <Image src={`/assets/categories/${image}.png`} alt={alt} fill sizes="(max-width: 560px) calc(100vw - 32px), (max-width: 1100px) calc((100vw - 72px) / 2), (max-width: 1328px) calc((100vw - 120px) / 4), 302px" />
                 </div>
@@ -32,7 +31,7 @@ export default function UsersCategories() {
                   <p>{description}</p>
                   <span className="users-categories__footer">Ver locales <Icon icon={chevronRightIcon} aria-hidden="true" /></span>
                 </div>
-              </Link>
+              </a>
             </li>
           ))}
         </ul>

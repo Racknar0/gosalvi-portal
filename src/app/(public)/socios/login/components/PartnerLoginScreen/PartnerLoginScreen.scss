@@ -1,0 +1,188 @@
+.partner-portal__main:has(.partner-sign-in) {
+  position: relative;
+  padding-top: 36px;
+  padding-bottom: 40px;
+}
+
+.partner-sign-in {
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.partner-sign-in__back {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  gap: 8px;
+  color: #1e7a35;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.partner-sign-in__back svg {
+  width: 16px;
+  height: 16px;
+}
+
+.partner-sign-in__intro {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.partner-sign-in__intro h1 {
+  margin: 0 0 12px;
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 3.5vw, 42px);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.partner-sign-in__intro h1 span {
+  color: #1e7a35;
+}
+
+.partner-sign-in__intro > p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #76533f;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.partner-sign-in__intro ul {
+  display: grid;
+  margin: 20px 0 0;
+  padding: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  list-style: none;
+}
+
+.partner-sign-in__intro li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.partner-sign-in__intro li svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: #1e7a35;
+}
+
+.partner-sign-in__card {
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 28px;
+  box-shadow: 0 8px 32px rgba(74, 37, 21, 0.05);
+}
+
+.partner-sign-in__heading {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.partner-sign-in__heading > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+
+.partner-sign-in__heading h2 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.partner-sign-in__badge {
+  display: inline-flex;
+  padding: 5px 12px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #9ce8b3;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #1e7a35;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.partner-sign-in__badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+.partner-sign-in__heading p {
+  margin: 10px 0 0;
+  color: #76533f;
+  font-size: 16px;
+}
+
+.partner-sign-in__register {
+  margin: 24px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid #fde8c8;
+  color: #76533f;
+  font-size: 14px;
+  text-align: center;
+}
+
+.partner-sign-in__register a {
+  color: #1e7a35;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.partner-sign-in__privacy {
+  display: flex;
+  margin: 14px 0 0;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #1e7a35;
+  font-size: 14px;
+}
+
+.partner-sign-in__privacy svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1100px) {
+  .partner-portal__main:has(.partner-sign-in) {
+    padding-top: 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .partner-sign-in__intro > p {
+    font-size: 16px;
+  }
+
+  .partner-sign-in__intro ul {
+    width: fit-content;
+    margin: 16px auto 0;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .partner-sign-in__intro li {
+    justify-content: flex-start;
+  }
+
+  .partner-sign-in__heading h2 {
+    font-size: 28px;
+  }
+}
