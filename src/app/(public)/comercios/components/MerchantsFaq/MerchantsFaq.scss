@@ -1,0 +1,103 @@
+.merchants-faq {
+  padding: var(--section-space) 24px;
+  background: #fff8f0;
+  color: #4a2515;
+}
+
+.merchants-faq__inner {
+  max-width: 896px;
+  margin: 0 auto;
+}
+
+.merchants-faq__heading {
+  margin-bottom: var(--section-heading-gap);
+  text-align: center;
+}
+
+.merchants-faq__heading span {
+  color: #1e7a35;
+  font-size: var(--text-small);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.merchants-faq__heading h2 {
+  margin: 14px 0 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-section-title);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.merchants-faq__item {
+  margin-top: 12px;
+  overflow: hidden;
+  border: 1px solid #fde3bd;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.merchants-faq__item summary {
+  display: flex;
+  padding: 18px 22px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--font-heading);
+  font-size: var(--text-body);
+  font-weight: 700;
+  line-height: 1.5;
+  list-style: none;
+  cursor: pointer;
+}
+
+.merchants-faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.merchants-faq__item summary:hover {
+  background: #fffaf4;
+}
+
+.merchants-faq__item summary:focus-visible {
+  outline: 2px solid #197536;
+  outline-offset: -4px;
+}
+
+.merchants-faq__item svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: #1e7a35;
+}
+
+.merchants-faq__item[open] svg {
+  transform: rotate(180deg);
+}
+
+.merchants-faq__item > p {
+  margin: 0;
+  padding: 18px 22px 22px;
+  border-top: 1px solid #fde8c8;
+  color: #76533f;
+  font-size: var(--text-body);
+  line-height: 1.65;
+}
+
+.merchants-faq__item a {
+  color: #1e7a35;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 560px) {
+  .merchants-faq {
+    padding: var(--section-space) 16px;
+  }
+
+  .merchants-faq__item summary,
+  .merchants-faq__item > p {
+    padding: 18px;
+  }
+}

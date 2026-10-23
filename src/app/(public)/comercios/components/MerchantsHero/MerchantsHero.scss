@@ -1,5 +1,5 @@
 .merchants-hero {
-  padding: 56px 0 48px;
+  padding: var(--section-space) 0;
   background: linear-gradient(180deg, #fff8f0, #f6fdf8, #fff8f0);
   color: #4a2515;
 }
@@ -96,16 +96,6 @@
 
 .merchants-hero__button--primary:hover {
   background: #d9691c;
-}
-
-.merchants-hero__button--download {
-  border-color: #9ce8b3;
-  background: #dcfce7;
-  color: #1e7a35;
-}
-
-.merchants-hero__button--download:hover {
-  background: #bbf7d0;
 }
 
 .merchants-hero__customer-link {
@@ -209,7 +199,7 @@
 
 .merchants-hero__metrics {
   display: grid;
-  margin: 20px 0 16px;
+  margin: 20px 0 0;
   gap: 12px;
   font-size: var(--text-small);
 }
@@ -250,19 +240,6 @@
   flex: 0 0 auto;
 }
 
-.merchants-hero__button--join {
-  width: 100%;
-  min-height: 44px;
-  padding: 10px 14px;
-  background: #1e7a35;
-  color: #fff;
-  font-size: var(--text-small);
-}
-
-.merchants-hero__button--join:hover {
-  background: #165b27;
-}
-
 .merchants-hero a:focus-visible {
   outline: 2px solid #197536;
   outline-offset: 4px;
@@ -283,10 +260,6 @@
 }
 
 @media (max-width: 1000px) {
-  .merchants-hero {
-    padding: 40px 0;
-  }
-
   .merchants-hero__inner {
     max-width: 720px;
     grid-template-columns: 1fr;

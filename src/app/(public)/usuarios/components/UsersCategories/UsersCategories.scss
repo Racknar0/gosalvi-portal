@@ -1,5 +1,5 @@
 .users-categories {
-  padding: 48px 0;
+  padding: var(--section-space) 0;
   border-top: 1px solid #fde8c8;
   border-bottom: 1px solid #fde8c8;
   background: #fff;
@@ -13,7 +13,7 @@
 
 .users-categories__heading {
   max-width: 620px;
-  margin: 0 auto 32px;
+  margin: 0 auto var(--section-heading-gap);
   text-align: center;
 }
 
@@ -38,7 +38,7 @@
   margin: 0;
   padding: 0;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
+  gap: var(--section-card-gap);
   list-style: none;
 }
 
@@ -144,17 +144,13 @@
 }
 
 @media (max-width: 560px) {
-  .users-categories {
-    padding: 48px 0;
-  }
-
   .users-categories__inner {
     width: calc(100% - 32px);
   }
 
   .users-categories__grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: var(--section-card-gap);
   }
 }
 

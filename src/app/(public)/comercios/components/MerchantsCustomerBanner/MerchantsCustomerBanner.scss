@@ -1,0 +1,103 @@
+.merchants-customer-banner {
+  padding: var(--section-space) 24px;
+  background: radial-gradient(ellipse at top right, rgba(255, 177, 62, 0.32), transparent 65%), linear-gradient(110deg, #ce4b0a, #b73b08);
+  color: #fff;
+}
+
+.merchants-customer-banner__inner {
+  display: flex;
+  max-width: 1120px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.merchants-customer-banner__content {
+  max-width: 680px;
+}
+
+.merchants-customer-banner__content > span {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid #ffd4a5;
+  border-radius: 999px;
+  background: #ffe3bf;
+  color: #743008;
+  font-size: var(--text-small);
+  font-weight: 800;
+}
+
+.merchants-customer-banner h2 {
+  margin: 14px 0 12px;
+  font-family: var(--font-heading);
+  font-size: var(--text-section-title);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.merchants-customer-banner h2 span {
+  color: #ffe6ae;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 230, 174, 0.5);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+}
+
+.merchants-customer-banner p {
+  margin: 0;
+  font-size: var(--text-body);
+  line-height: 1.65;
+}
+
+.merchants-customer-banner__button {
+  display: inline-flex;
+  min-height: 50px;
+  padding: 12px 22px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 999px;
+  background: #fff;
+  color: #1e7a35;
+  box-shadow: 0 6px 18px rgba(94, 27, 0, 0.22);
+  font-family: var(--font-heading);
+  font-size: var(--text-action);
+  font-weight: 700;
+  text-align: center;
+}
+
+.merchants-customer-banner__button:hover {
+  background: #fff8f0;
+}
+
+.merchants-customer-banner__button:focus-visible {
+  outline: 2px solid #4a2515;
+  outline-offset: 4px;
+}
+
+.merchants-customer-banner__button svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1000px) {
+  .merchants-customer-banner__inner {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .merchants-customer-banner {
+    padding: var(--section-space) 16px;
+  }
+
+  .merchants-customer-banner__button {
+    width: 100%;
+  }
+}

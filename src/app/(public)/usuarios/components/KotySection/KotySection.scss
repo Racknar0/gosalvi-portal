@@ -1,5 +1,5 @@
 .koty-section {
-  padding: 24px 24px 48px;
+  padding: var(--section-space) 24px;
   background: #fff8f0;
   color: #4a2515;
 }
@@ -117,7 +117,7 @@
 
 @media (max-width: 560px) {
   .koty-section {
-    padding: 20px 16px 40px;
+    padding: var(--section-space) 16px;
   }
 
   .koty-section__panel {

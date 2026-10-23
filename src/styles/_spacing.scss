@@ -1,0 +1,13 @@
+:root {
+  --section-space: 56px;
+  --section-heading-gap: 40px;
+  --section-card-gap: 24px;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --section-space: 40px;
+    --section-heading-gap: 32px;
+    --section-card-gap: 16px;
+  }
+}

@@ -1,6 +1,6 @@
 .users-hero {
   overflow: hidden;
-  padding: 56px 0 40px;
+  padding: var(--section-space) 0;
   background: #fff8f0;
   color: #4a2515;
 }
@@ -281,10 +281,6 @@
 }
 
 @media (max-width: 1000px) {
-  .users-hero {
-    padding: 40px 0 32px;
-  }
-
   .users-hero__inner {
     width: min(calc(100% - 48px), 720px);
     grid-template-columns: 1fr;

@@ -49,12 +49,25 @@ export default function PublicHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [businessOpen, setBusinessOpen] = useState(false);
   const businessRef = useRef(null);
+  const menuToggleRef = useRef(null);
   const merchant = pathname.startsWith('/comercios');
   const links = merchant ? merchantLinks : customerLinks;
   const closeMenu = () => {
     setMenuOpen(false);
     setBusinessOpen(false);
   };
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+        menuToggleRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [menuOpen]);
 
   useEffect(() => {
     if (!businessOpen) return;
@@ -121,13 +134,21 @@ export default function PublicHeader() {
               <Icon className="public-header__action-icon" icon={userPlusIcon} aria-hidden="true" /> Creá tu cuenta
             </Link>
           )}
-          <button className="public-header__menu-toggle" type="button" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={menuOpen} aria-controls="public-navigation" onClick={() => setMenuOpen((open) => !open)}>
+          <button ref={menuToggleRef} className="public-header__menu-toggle" type="button" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={menuOpen} aria-controls="public-mobile-panel" onClick={() => setMenuOpen((open) => !open)}>
             <Icon icon={menuOpen ? closeIcon : menuIcon} aria-hidden="true" />
           </button>
         </div>
       </div>
 
-      <div className={`public-header__secondary ${menuOpen ? 'is-open' : ''}`}>
+      <div id="public-mobile-panel" className={`public-header__secondary ${menuOpen ? 'is-open' : ''}`}>
+        <nav className="public-header__audience public-header__mobile-audience" aria-label="Elegí tu experiencia">
+          <Link className={!merchant ? 'is-active' : ''} href="/usuarios" onClick={() => setBusinessOpen(false)} aria-current={pathname === '/usuarios' ? 'page' : undefined}>
+            <Icon className="public-header__audience-icon" icon={avocadoIcon} aria-hidden="true" /> Para vos
+          </Link>
+          <Link className={merchant ? 'is-active' : ''} href="/comercios" onClick={() => setBusinessOpen(false)} aria-current={pathname === '/comercios' ? 'page' : undefined}>
+            <Icon className="public-header__audience-icon" icon={shopIcon} aria-hidden="true" /> Para tu negocio
+          </Link>
+        </nav>
         <nav id="public-navigation" className="public-header__links" aria-label={merchant ? 'Navegación para comercios' : 'Navegación para usuarios'}>
           <Link className="public-header__download" href="/descargar-app" onClick={closeMenu} aria-label="Descargá la app en Google Play o App Store" aria-current={pathname === '/descargar-app' ? 'page' : undefined}>
             <span className="public-header__platforms" aria-hidden="true">
@@ -142,6 +163,17 @@ export default function PublicHeader() {
               {label}
             </a>
           ))}
+          </div>
+          <div className="public-header__mobile-actions">
+            {merchant ? (
+              <>
+                <span>Mi local en Salvi</span>
+                <Link href="/comercios/sumar-local" className="public-header__primary public-header__primary--merchant" onClick={closeMenu}><Icon icon={storeIcon} aria-hidden="true" /> Sumá tu local</Link>
+                <Link href="/comercios/portal-socios" onClick={closeMenu}><Icon icon={logInIcon} aria-hidden="true" /> Entrá al portal</Link>
+              </>
+            ) : (
+              <Link href="/crear-cuenta" className="public-header__primary" onClick={closeMenu}><Icon icon={userPlusIcon} aria-hidden="true" /> Creá tu cuenta</Link>
+            )}
           </div>
           <a className="public-header__koty" href="/usuarios#koty" onClick={closeMenu} aria-current={!merchant && hash === '#koty' ? 'location' : undefined}>
             <Icon icon={pawPrintIcon} aria-hidden="true" />
