@@ -15,12 +15,12 @@ import plusIcon from '@iconify-icons/lucide/plus';
 import logInIcon from '@iconify-icons/lucide/log-in';
 import menuIcon from '@iconify-icons/lucide/menu';
 import closeIcon from '@iconify-icons/lucide/x';
+import pawPrintIcon from '@iconify-icons/lucide/paw-print';
 import './PublicHeader.scss';
 
 const customerLinks = [
   { label: 'Cómo funciona', href: '/usuarios/como-funciona' },
   { label: 'Categorías', href: '/usuarios/categorias' },
-  { label: 'Mascota Koty', href: '/usuarios/koty' },
   { label: 'Preguntas frecuentes', href: '/usuarios/dudas-frecuentes' },
 ];
 
@@ -119,11 +119,17 @@ export default function PublicHeader() {
 
       <div className={`public-header__secondary ${menuOpen ? 'is-open' : ''}`}>
         <nav id="public-navigation" className="public-header__links" aria-label={merchant ? 'Navegación para comercios' : 'Navegación para usuarios'}>
+          <div className="public-header__sections">
           {links.map(({ label, href }) => (
             <Link href={href} key={href} onClick={closeMenu} aria-current={pathname === href ? 'page' : undefined}>
               {label}
             </Link>
           ))}
+          </div>
+          <Link className="public-header__koty" href="/usuarios/koty" onClick={closeMenu} aria-current={pathname === '/usuarios/koty' ? 'page' : undefined}>
+            <Icon icon={pawPrintIcon} aria-hidden="true" />
+            Conoce a Koty
+          </Link>
         </nav>
       </div>
     </header>

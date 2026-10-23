@@ -1,11 +1,8 @@
-import PublicViewPage from '../components/PublicViewPage/PublicViewPage';
-
 export default function DownloadAppPage() {
   return (
-    <PublicViewPage
-      eyebrow="Aplicación Salvi"
-      title="Descargar app"
-      description="Una misma app para usuarios y comercios. Aquí encontrarás la descarga de Salvi."
-    />
+    <main>
+      <h1>Descargar app</h1>
+      <p>Una misma app para usuarios y comercios. Aquí encontrarás la descarga de Salvi.</p>
+    </main>
   );
 }
