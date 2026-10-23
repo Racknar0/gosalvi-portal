@@ -1,8 +1,17 @@
+import UsersHero from './components/UsersHero/UsersHero';
+import UsersSteps from './components/UsersSteps/UsersSteps';
+import UsersCategories from './components/UsersCategories/UsersCategories';
+import KotySection from './components/KotySection/KotySection';
+import UsersFaq from './components/UsersFaq/UsersFaq';
+
 export default function UsersPage() {
   return (
     <main>
-      <h1>Para Usuarios</h1>
-      <p>Cambiaste a la vista para usuarios. Aquí organizaremos las opciones para descubrir comida y aprovechar ofertas.</p>
+      <UsersHero />
+      <UsersSteps />
+      <UsersCategories />
+      <UsersFaq />
+      <KotySection />
     </main>
   );
 }

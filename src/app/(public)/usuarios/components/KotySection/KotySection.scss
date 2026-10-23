@@ -1,0 +1,139 @@
+.koty-section {
+  padding: 24px 24px 48px;
+  background: #fff8f0;
+  color: #4a2515;
+}
+
+.koty-section__panel {
+  display: grid;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: 32px;
+  border: 2px solid #fde8c8;
+  border-radius: 24px;
+  background: linear-gradient(45deg, #fff8f0, #fff0de, #fff8f0);
+  box-shadow: 0 3px 7px rgba(98, 60, 27, 0.06);
+}
+
+.koty-section__mascot {
+  display: block;
+  width: min(100%, 336px);
+  justify-self: center;
+}
+
+.koty-section__mascot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 3px rgba(74, 37, 21, 0.1));
+}
+
+.koty-section__badge {
+  display: inline-flex;
+  padding: 5px 12px;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  background: #f5842b;
+  color: #fff;
+  font-size: var(--text-small);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.koty-section__badge svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+.koty-section__content h2 {
+  margin: 20px 0 16px;
+  font-family: var(--font-heading);
+  font-size: var(--text-section-title);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.koty-section__content > p {
+  margin: 0;
+  color: #76533f;
+  font-size: var(--text-body);
+  line-height: 1.65;
+}
+
+.koty-section__features {
+  display: grid;
+  margin: 24px 0 0;
+  padding: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.koty-section__features li {
+  padding: 16px;
+  border: 1px solid #fde3bd;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.koty-section__features svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 10px;
+}
+
+.koty-section__features h3 {
+  margin: 0 0 3px;
+  font-family: var(--font-heading);
+  font-size: var(--text-body);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.koty-section__features p {
+  margin: 0;
+  color: #76533f;
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+@media (max-width: 1000px) {
+  .koty-section__panel {
+    padding: 32px;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .koty-section__features {
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .koty-section {
+    padding: 20px 16px 40px;
+  }
+
+  .koty-section__panel {
+    padding: 28px 20px;
+  }
+
+  .koty-section__mascot {
+    width: min(100%, 264px);
+  }
+
+  .koty-section__features {
+    grid-template-columns: 1fr;
+  }
+
+  .koty-section__features li {
+    border-radius: 18px;
+  }
+}
+

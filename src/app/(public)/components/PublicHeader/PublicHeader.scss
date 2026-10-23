@@ -1,3 +1,7 @@
+:root {
+  --public-anchor-offset: 128px;
+}
+
 .public-header {
   position: sticky;
   z-index: 40;
@@ -48,7 +52,7 @@
   border-radius: 999px;
   color: #806958;
   font-family: var(--font-heading);
-  font-size: 14px;
+  font-size: var(--text-small);
   font-weight: var(--weight-bold);
   line-height: 1.25;
   white-space: nowrap;
@@ -92,7 +96,7 @@
   background: #29a84d;
   color: #fff;
   font-family: var(--font-heading);
-  font-size: 14px;
+  font-size: var(--text-small);
   font-weight: var(--weight-bold);
   line-height: 1.25;
   white-space: nowrap;
@@ -113,19 +117,18 @@
   background: #d9691c;
 }
 
-.public-header__download {
-  border: 1px solid #edddc9;
-  background: #fffdf9;
-  color: #4a2515;
-  box-shadow: none;
+.public-header__platforms {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.public-header__download:hover {
-  background: #fff0dc;
-}
-
-.public-header__download svg {
-  color: #24994a;
+.public-header__platforms img {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  object-fit: contain;
 }
 
 .public-header__primary svg {
@@ -157,6 +160,30 @@
   gap: 30px;
 }
 
+.public-header__links .public-header__download {
+  min-height: 32px;
+  padding: 0 12px;
+  align-self: center;
+  justify-self: start;
+  gap: 10px;
+  border: 1px solid #bfe5c8;
+  border-radius: 999px;
+  background: #edf9ef;
+  color: #197536;
+  font-weight: var(--weight-bold);
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.public-header__links .public-header__download:hover,
+.public-header__links .public-header__download[aria-current] {
+  border-color: #8bc99b;
+  background: #def2e3;
+}
+
+.public-header__links .public-header__download[aria-current]::after {
+  display: none;
+}
+
 .public-header__links .public-header__koty {
   justify-self: end;
   gap: 8px;
@@ -172,7 +199,7 @@
 }
 
 .public-header__links .public-header__koty:hover,
-.public-header__links .public-header__koty[aria-current="page"] {
+.public-header__links .public-header__koty[aria-current] {
   color: #dc6d1c;
 }
 
@@ -183,7 +210,7 @@
   align-items: center;
   gap: 6px;
   color: #806958;
-  font-size: 13px;
+  font-size: var(--text-small);
   font-weight: var(--weight-medium);
   line-height: 1.25;
   white-space: nowrap;
@@ -191,11 +218,11 @@
 }
 
 .public-header__links a:hover,
-.public-header__links a[aria-current="page"] {
+.public-header__links a[aria-current] {
   color: #197536;
 }
 
-.public-header__links a[aria-current="page"]::after {
+.public-header__links a[aria-current]::after {
   position: absolute;
   right: 0;
   bottom: -1px;
@@ -252,7 +279,7 @@
   align-items: center;
   color: #4a2515;
   font-family: var(--font-heading);
-  font-size: 14px;
+  font-size: var(--text-small);
 }
 
 .public-header__business-menu strong svg {
@@ -264,7 +291,7 @@
 
 .public-header__business-menu a > span {
   color: #806958;
-  font-size: 12px;
+  font-size: var(--text-small);
   line-height: 1.5;
 }
 
@@ -286,12 +313,12 @@
 
   .public-header__audience a {
     padding: 0 12px;
-    font-size: 13px;
+    font-size: var(--text-small);
   }
 
   .public-header__primary {
     padding: 0 14px;
-    font-size: 13px;
+    font-size: var(--text-small);
   }
 
   .public-header__sections {
@@ -300,6 +327,10 @@
 }
 
 @media (max-width: 1000px) {
+  :root {
+    --public-anchor-offset: 200px;
+  }
+
   .public-header__business-menu {
     right: auto;
     left: 0;
@@ -336,7 +367,7 @@
   .public-header__primary {
     min-height: 38px;
     padding: 0 10px;
-    font-size: 12px;
+    font-size: var(--text-small);
   }
 
   .public-header__primary .public-header__action-icon {
@@ -384,6 +415,13 @@
     gap: 0;
   }
 
+  .public-header__links .public-header__download {
+    min-height: 40px;
+    margin-bottom: 8px;
+    justify-self: stretch;
+    justify-content: center;
+  }
+
   .public-header__links .public-header__koty {
     justify-self: stretch;
     margin-top: 6px;
@@ -395,29 +433,13 @@
     padding: 0 12px;
   }
 
-  .public-header__links a[aria-current="page"] {
+  .public-header__links a[aria-current] {
     border-radius: 10px;
     background: #e8f8eb;
   }
 
-  .public-header__links a[aria-current="page"]::after {
+  .public-header__links a[aria-current]::after {
     display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .public-header__actions {
-    display: grid;
-    grid-template-columns: 1fr auto;
-  }
-
-  .public-header__business,
-  .public-header__actions > .public-header__primary:not(.public-header__download) {
-    grid-column: 1 / -1;
-  }
-
-  .public-header__business > button {
-    width: 100%;
   }
 }
 

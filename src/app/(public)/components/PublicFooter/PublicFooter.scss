@@ -1,0 +1,148 @@
+.public-footer {
+  padding: 48px 24px 28px;
+  border-top: 1px solid #fde8c8;
+  background: #fff;
+  color: #76533f;
+  font-size: var(--text-small);
+  line-height: 1.6;
+}
+
+.public-footer__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.public-footer__columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.public-footer__brand > a {
+  display: inline-flex;
+}
+
+.public-footer__brand img {
+  display: block;
+  width: 110px;
+  height: auto;
+}
+
+.public-footer__brand p {
+  max-width: 260px;
+  margin: 12px 0 20px;
+}
+
+.public-footer__socials {
+  display: flex;
+  gap: 12px;
+}
+
+.public-footer__socials a {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid #fde3bd;
+  border-radius: 50%;
+  background: #fff8f0;
+  color: #4a2515;
+}
+
+.public-footer__socials svg {
+  width: 17px;
+  height: 17px;
+}
+
+.public-footer h2 {
+  margin: 0 0 12px;
+  color: #4a2515;
+  font-family: var(--font-heading);
+  font-size: var(--text-small);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.public-footer ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.public-footer li a {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.public-footer li svg {
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  flex: 0 0 auto;
+  color: #1e7a35;
+}
+
+.public-footer__highlight {
+  color: #1e7a35;
+  font-weight: 700;
+}
+
+.public-footer a:hover {
+  color: #1e7a35;
+}
+
+.public-footer a:focus-visible {
+  outline: 2px solid #197536;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.public-footer__bottom {
+  display: flex;
+  padding-top: 22px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid #fde3bd;
+}
+
+.public-footer__bottom p {
+  display: flex;
+  margin: 0;
+  align-items: center;
+  gap: 6px;
+}
+
+.public-footer__bottom svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  color: #1e7a35;
+}
+
+@media (max-width: 1000px) {
+  .public-footer__columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .public-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .public-footer {
+    padding: 36px 16px 24px;
+  }
+
+  .public-footer__columns {
+    grid-template-columns: 1fr;
+  }
+}
