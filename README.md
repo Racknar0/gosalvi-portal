@@ -28,4 +28,8 @@ desarrollo usa 127.0.0.1:4000; en producción, 172.19.0.1:3201. Se puede configu
 El JWT se conserva en memoria y sessionStorage de la pestaña; la API comprueba
 permisos y estado de cuenta en cada petición. Los textos usan diccionarios AR/CO.
 
+El selector detecta el país por IP en la primera visita mediante `/api/country`.
+La elección guardada en `salvi-country` siempre tiene prioridad, incluso si se
+cambia mientras llega la detección. Sin detección válida, utiliza Argentina.
+
 Validación: `npm run lint` y `npm run build`. El correo SMTP se configura en el backend.

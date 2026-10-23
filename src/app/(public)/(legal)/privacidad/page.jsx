@@ -48,6 +48,16 @@ export default function PrivacyPage() {
               estado del pedido, recordatorios de horario de retiro y
               notificaciones del compañero Koty.
             </p>
+            <p>
+              <strong>d) País aproximado por IP:</strong> En la primera visita,
+              consultamos la dirección IP con{' '}
+              <a href="https://country.is/">country.is</a> para seleccionar
+              Argentina o Colombia en la interfaz. No requiere GPS y no
+              guardamos esa IP en la base de datos de Salvi. Puedes cambiar el
+              país en el selector; tu elección se conserva en el almacenamiento
+              local del navegador y tiene prioridad sobre la detección
+              automática.
+            </p>
           </section>
 
           <section>

@@ -1,6 +1,10 @@
 'use client';
 
-import { useCountry, setCountry } from '@/helpers/countryPreference';
+import {
+  useCountry,
+  setCountry,
+  initializeCountry,
+} from '@/helpers/countryPreference';
 import { useEffect, useRef, useState } from 'react';
 import { Icon } from '@iconify/react/offline';
 import chevronDownIcon from '@iconify-icons/lucide/chevron-down';
@@ -18,6 +22,10 @@ export default function CountrySelector({ className = '' }) {
   const root = useRef(null);
   const selected =
     countries.find(({ code }) => code === activeCountry) || countries[0];
+
+  useEffect(() => {
+    initializeCountry();
+  }, []);
 
   useEffect(() => {
     if (!open) return undefined;
