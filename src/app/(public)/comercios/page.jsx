@@ -1,12 +1,10 @@
+import MerchantsHero from './components/MerchantsHero/MerchantsHero';
 import './page.scss';
 
 export default function MerchantsPage() {
   return (
     <main className="merchants-page">
-      <section className="merchants-page__section" id="inicio">
-        <h1>Para tu negocio</h1>
-        <p>Convertí los excedentes frescos del día en nuevas oportunidades para tu local.</p>
-      </section>
+      <MerchantsHero />
       <section className="merchants-page__section" id="beneficios-b2b">
         <h2>Beneficios para tu negocio</h2>
         <ul>
