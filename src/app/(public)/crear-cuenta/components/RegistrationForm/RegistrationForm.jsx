@@ -15,6 +15,9 @@ import LocationFields from '../LocationFields/LocationFields';
 import { useCountry } from '@/helpers/countryPreference';
 import { registrationCopy } from './RegistrationForm.copy';
 import './RegistrationForm.scss';
+import FormNotice from '@/components/FormNotice/FormNotice';
+import RegistrationSuccess from '@/components/RegistrationSuccess/RegistrationSuccess';
+import { registerCustomer, authError } from '@/services/AuthService';
 
 export default function RegistrationForm({ countries, initialCities }) {
   const copy = registrationCopy[useCountry()];
@@ -37,6 +40,10 @@ export default function RegistrationForm({ countries, initialCities }) {
   }
   const [notice, setNotice] = useState('');
   const [phone, setPhone] = useState('');
+  const [pending, setPending] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState('');
+
+  if (registeredEmail) return <main className="registration"><section className="registration__card"><RegistrationSuccess email={registeredEmail} /></section></main>;
 
   return (
     <main className="registration">
@@ -59,14 +66,24 @@ export default function RegistrationForm({ countries, initialCities }) {
           </button>
           <div className="registration__divider">{copy.divider}</div>
           <p className="registration__required-note"><RequiredMark /> Campos obligatorios</p>
-          <form onSubmit={(event) => {
+          <form onSubmit={async (event) => {
             event.preventDefault();
+            if (pending) return;
             if (password !== confirmation) {
               setConfirmationTouched(true);
               confirmationInput.current?.focus();
               return;
             }
-            setNotice('El registro todavía no está habilitado. No se creó ninguna cuenta ni se guardaron tus datos.');
+            if (new TextEncoder().encode(password).length > 72) { setNotice(copy.tooLong); return; }
+            const form = event.currentTarget;
+            const data = new FormData(form);
+            const email = String(data.get('email') || '').trim();
+            setPending(true); setNotice('');
+            try {
+              await registerCustomer({ name: data.get('name'), email, phone, password, acceptedTerms: data.get('terms') === 'on', countryCode: data.get('country'), city: form.querySelector('#register-city')?.selectedOptions[0]?.value ? form.querySelector('#register-city').selectedOptions[0].textContent : '' });
+              setRegisteredEmail(email);
+            } catch (error) { setNotice(authError(error)); }
+            finally { setPending(false); }
           }}>
             <div className="registration__row">
               <label htmlFor="register-name"><span>{copy.name}<RequiredMark /></span><input id="register-name" name="name" autoComplete="name" required minLength={2} maxLength={100} /></label>
@@ -93,8 +110,8 @@ export default function RegistrationForm({ countries, initialCities }) {
             </div>
             <LocationFields countries={countries} initialCities={initialCities} />
             <label className="registration__terms"><input type="checkbox" name="terms" required /><span>Leí y acepto los <Link href="/terminos" target="_blank" rel="noopener noreferrer">Términos y condiciones</Link> y la <Link href="/privacidad" target="_blank" rel="noopener noreferrer">Política de privacidad</Link> de Salvi.<RequiredMark /></span></label>
-            {notice && <p className="registration__notice" role="status">{notice}</p>}
-            <button type="submit" className="registration__submit">{copy.submit} <Icon icon={arrowRightIcon} aria-hidden="true" /></button>
+            <FormNotice>{notice}</FormNotice>
+            <button type="submit" className="registration__submit" disabled={pending}>{pending ? copy.pending : copy.submit} <Icon icon={arrowRightIcon} aria-hidden="true" /></button>
           </form>
           <p className="registration__privacy"><Icon icon={shieldCheckIcon} aria-hidden="true" /> {copy.privacy}</p>
         </section>

@@ -3,7 +3,7 @@
 import { create } from 'zustand';
 import { subscribeWithSelector } from 'zustand/middleware';
 
-// Base de Los Rones sin datos comerciales ni un contrato de autenticación supuesto.
+// Acceso de Salvi en memoria; el token se conserva por pestaña en sessionStorage.
 const useStore = create(
   subscribeWithSelector((set) => ({
     loading: false,

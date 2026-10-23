@@ -1,4 +1,8 @@
 const sharedCopy = {
+  password: 'Contraseña', confirmation: 'Confirmar contraseña',
+  credentialsHint: 'Si ya tienes cuenta en Salvi, usa el mismo correo y contraseña.',
+  passwordHint: 'Al menos 8 caracteres. Máximo 72 bytes.', mismatch: 'Las contraseñas no coinciden.',
+  pending: 'Enviando solicitud…', tooLong: 'La contraseña supera el máximo de 72 bytes. Usa menos caracteres.',
   formLabel: 'Registrar mi negocio',
   businessTitle: '2. Datos del negocio',
   businessName: 'Nombre del negocio',

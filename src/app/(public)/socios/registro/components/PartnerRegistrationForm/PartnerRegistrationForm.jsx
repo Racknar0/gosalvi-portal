@@ -24,6 +24,10 @@ import PartnerAddress from '../PartnerAddress/PartnerAddress';
 import './PartnerRegistrationForm.scss';
 import { useCountry } from '@/helpers/countryPreference';
 import { partnerRegistrationCopy } from './PartnerRegistrationForm.copy';
+import FormNotice from '@/components/FormNotice/FormNotice';
+import PasswordField from '@/components/PasswordField/PasswordField';
+import RegistrationSuccess from '@/components/RegistrationSuccess/RegistrationSuccess';
+import { registerBusiness, authError } from '@/services/AuthService';
 
 const businessModels = [
   { value: 'direct_store', icon: storeIcon },
@@ -46,7 +50,8 @@ const categories = [
 ];
 
 export default function PartnerRegistrationForm() {
-  const copy = partnerRegistrationCopy[useCountry()];
+  const countryCode = useCountry();
+  const copy = partnerRegistrationCopy[countryCode];
   const [businessModel, setBusinessModel] = useState('direct_store');
   const [fields, setFields] = useState({ brandName: '', legalName: '', taxId: '', category: 'panaderia', city: '', address: '', location: null, crossStreets: '', postalCode: '', phone: '', email: '', contactName: '', parentBrand: '', customParentBrand: '', holdingName: '', holdingBrands: '' });
   const [directBranches, setDirectBranches] = useState([]);
@@ -54,6 +59,8 @@ export default function PartnerRegistrationForm() {
   const [pilotLocations, setPilotLocations] = useState([{ id: 'pilot-1', name: 'Local propio 1', address: '', location: null }]);
   const [hasOwnPilotStore, setHasOwnPilotStore] = useState(true);
   const [notice, setNotice] = useState('');
+  const [pending, setPending] = useState(false);
+  const [success, setSuccess] = useState(null);
   const branchSequence = useRef(2);
   const update = (name, value) => setFields((previous) => ({ ...previous, [name]: value }));
 
@@ -77,12 +84,31 @@ export default function PartnerRegistrationForm() {
     </section>
   );
 
+  if (success) return <RegistrationSuccess email={fields.email} business verificationRequired={success.verificationRequired} />;
+
   return (
-    <form className="partner-form partner-register" aria-label={copy.formLabel} onSubmit={(event) => {
+    <form className="partner-form partner-register" aria-label={copy.formLabel} onSubmit={async (event) => {
       event.preventDefault();
-      const locations = businessModel === 'direct_store' ? [fields.location, ...directBranches.map((branch) => branch.location)] : businessModel === 'franchisee' ? franchiseLocations.map((branch) => branch.location) : businessModel === 'franchisor' && hasOwnPilotStore ? pilotLocations.map((branch) => branch.location) : [];
-      if (locations.some((location) => !location)) { setNotice(copy.missingLocation); return; }
-      setNotice(copy.unavailable);
+      if (pending) return;
+      const form = new FormData(event.currentTarget);
+      const password = String(form.get('password') || '');
+      if (password !== form.get('passwordConfirmation')) { setNotice(copy.mismatch); return; }
+      if (new TextEncoder().encode(password).length > 72) { setNotice(copy.tooLong); return; }
+      const locationEntries = businessModel === 'direct_store' ? [{ name: fields.brandName, location: fields.location }, ...directBranches] : businessModel === 'franchisee' ? franchiseLocations : businessModel === 'franchisor' && hasOwnPilotStore ? pilotLocations : [];
+      if (locationEntries.some((entry) => !entry.location)) { setNotice(copy.missingLocation); return; }
+      const brand = fields.parentBrand === 'other' ? fields.customParentBrand : fields.parentBrand;
+      const businessName = businessModel === 'holding' ? fields.holdingName : businessModel === 'franchisee' ? brand : fields.brandName;
+      setPending(true); setNotice('');
+      try {
+        const result = await registerBusiness({ name: fields.contactName, email: fields.email, phone: fields.phone, password, acceptedTerms: form.get('acceptedTerms') === 'on', countryCode,
+          businessType: { direct_store: 'INDEPENDENT', franchisee: 'FRANCHISEE', franchisor: 'BRAND_OWNER', holding: 'GROUP' }[businessModel],
+          businessName, legalName: businessModel === 'holding' ? fields.holdingName : fields.legalName, taxId: fields.taxId,
+          locations: locationEntries.map(({ name, location }) => ({ ...location, name })),
+          details: { category: fields.category, brand: businessModel === 'franchisee' ? brand : '', groupBrands: businessModel === 'holding' ? fields.holdingBrands.split(',').map((value) => value.trim()).filter(Boolean) : [] },
+        });
+        setSuccess(result);
+      } catch (error) { setNotice(authError(error)); }
+      finally { setPending(false); }
     }}>
       <fieldset className="partner-register__models"><legend>{copy.chooseModel}<RequiredMark /></legend><div>{businessModels.map(({ value, icon }) => <button key={value} type="button" data-model={value} aria-pressed={businessModel === value} onClick={() => { setBusinessModel(value); setNotice(''); }}><strong><Icon icon={icon} aria-hidden="true" />{copy.models[value][0]}</strong><span>{copy.models[value][1]}</span></button>)}</div></fieldset>
       <details className="partner-register__info" open><summary><Icon icon={infoIcon} aria-hidden="true" />{copy.infoTitle}<Icon className="partner-register__info-chevron" icon={chevronDownIcon} aria-hidden="true" /></summary><div>
@@ -127,10 +153,15 @@ export default function PartnerRegistrationForm() {
           <div className="partner-form__field"><label htmlFor="partner-register-phone">{copy.contactPhone}<RequiredMark /></label><PhoneField id="partner-register-phone" value={fields.phone} onChange={(phone) => update('phone', phone)} required /></div>
         </div>
         {field('email', copy.contactEmail, { required: true, type: 'email', autoComplete: 'email' })}
+        <p className="partner-form__hint">{copy.credentialsHint}</p>
+        <div className="partner-form__row">
+          <label className="partner-form__field" htmlFor="partner-register-password"><span>{copy.password}<RequiredMark /></span><PasswordField id="partner-register-password" /><small className="partner-form__hint">{copy.passwordHint}</small></label>
+          <label className="partner-form__field" htmlFor="partner-register-confirmation"><span>{copy.confirmation}<RequiredMark /></span><PasswordField id="partner-register-confirmation" name="passwordConfirmation" confirmation /></label>
+        </div>
       </section>
       <label className="partner-register__terms"><input type="checkbox" name="acceptedTerms" required /><span>{copy.acceptTerms} <Link href="/terminos" target="_blank" rel="noopener noreferrer">{copy.terms}</Link> {copy.termsJoin} <Link href="/privacidad" target="_blank" rel="noopener noreferrer">{copy.privacy}</Link>.<RequiredMark /></span></label>
-      {notice && <p role="status" className="partner-form__notice">{notice}</p>}
-      <button type="submit" className="partner-form__submit"><Icon icon={sparklesIcon} aria-hidden="true" /> {copy.submit}</button>
+      <FormNotice>{notice}</FormNotice>
+      <button type="submit" className="partner-form__submit" disabled={pending}><Icon icon={sparklesIcon} aria-hidden="true" /> {pending ? copy.pending : copy.submit}</button>
     </form>
   );
 }

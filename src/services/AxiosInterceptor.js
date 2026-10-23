@@ -1,10 +1,10 @@
 "use client";
 
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { getState } from '../store/useStore.js';
 
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BACK_HOST?.trim() || '',
+  baseURL: process.env.NEXT_PUBLIC_BACK_HOST?.trim() || '/',
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
@@ -13,16 +13,9 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    if (!config.baseURL) {
-      throw new AxiosError(
-        'Configura NEXT_PUBLIC_BACK_HOST cuando se defina el backend.',
-        'API_NOT_CONFIGURED',
-        config,
-      );
-    }
-
     const token = getState().token;
-    if (token && !config.headers.has('Authorization')) {
+    const publicAuth = config.url?.startsWith('/api/auth/') && config.url !== '/api/auth/me';
+    if (token && !publicAuth && !config.headers.has('Authorization')) {
       config.headers.set('Authorization', `Bearer ${token}`);
     }
 
@@ -41,7 +34,7 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401 && token && authorization === `Bearer ${token}`) {
       getState().logout();
       if (typeof window !== 'undefined') {
-        window.sessionStorage.removeItem('orbital_access_token');
+        try { window.sessionStorage.removeItem('salvi_access_token'); } catch { /* Ya se limpió la memoria. */ }
       }
     }
 
