@@ -52,37 +52,37 @@
   line-height: 1.4;
 }
 
-.partner-register__models button[aria-pressed="true"] {
+.partner-register__models button[aria-pressed='true'] {
   border-color: #f5842b;
   background: #fffbeb;
   box-shadow: 0 0 0 2px #fde8c8;
 }
 
-.partner-register__models button[data-model="franchisee"] svg {
+.partner-register__models button[data-model='franchisee'] svg {
   color: #2ba84a;
 }
 
-.partner-register__models button[data-model="franchisee"][aria-pressed="true"] {
+.partner-register__models button[data-model='franchisee'][aria-pressed='true'] {
   border-color: #2ba84a;
   background: #ecfdf5;
   box-shadow: 0 0 0 2px #c5eed3;
 }
 
-.partner-register__models button[data-model="franchisor"] svg {
+.partner-register__models button[data-model='franchisor'] svg {
   color: #7e22ce;
 }
 
-.partner-register__models button[data-model="franchisor"][aria-pressed="true"] {
+.partner-register__models button[data-model='franchisor'][aria-pressed='true'] {
   border-color: #a855f7;
   background: #faf5ff;
   box-shadow: 0 0 0 2px #e9d5ff;
 }
 
-.partner-register__models button[data-model="holding"] svg {
+.partner-register__models button[data-model='holding'] svg {
   color: #1d4ed8;
 }
 
-.partner-register__models button[data-model="holding"][aria-pressed="true"] {
+.partner-register__models button[data-model='holding'][aria-pressed='true'] {
   border-color: #3b82f6;
   background: #eff6ff;
   box-shadow: 0 0 0 2px #bfdbfe;
@@ -374,7 +374,7 @@
   }
 
   .partner-register__info > div {
-  margin-top: 16px;
+    margin-top: 16px;
     grid-template-columns: 1fr;
   }
 }

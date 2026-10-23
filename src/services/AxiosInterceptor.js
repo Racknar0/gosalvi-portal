@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import axios from 'axios';
 import { getState } from '../store/useStore.js';
@@ -14,7 +14,8 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = getState().token;
-    const publicAuth = config.url?.startsWith('/api/auth/') && config.url !== '/api/auth/me';
+    const publicAuth =
+      config.url?.startsWith('/api/auth/') && config.url !== '/api/auth/me';
     if (token && !publicAuth && !config.headers.has('Authorization')) {
       config.headers.set('Authorization', `Bearer ${token}`);
     }
@@ -31,10 +32,18 @@ axiosInstance.interceptors.response.use(
     const authorization = error.config?.headers?.get?.('Authorization');
 
     // No cerrar una sesión nueva por una respuesta pendiente del token anterior.
-    if (error.response?.status === 401 && token && authorization === `Bearer ${token}`) {
+    if (
+      error.response?.status === 401 &&
+      token &&
+      authorization === `Bearer ${token}`
+    ) {
       getState().logout();
       if (typeof window !== 'undefined') {
-        try { window.sessionStorage.removeItem('salvi_access_token'); } catch { /* Ya se limpió la memoria. */ }
+        try {
+          window.sessionStorage.removeItem('salvi_access_token');
+        } catch {
+          /* Ya se limpió la memoria. */
+        }
       }
     }
 

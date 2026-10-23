@@ -19,27 +19,44 @@ import './UsersHero.scss';
 export default function UsersHero() {
   const copy = usersHeroCopy[useCountry()];
   return (
-    <section className="users-hero" id="inicio" aria-labelledby="users-hero-title">
+    <section
+      className="users-hero"
+      id="inicio"
+      aria-labelledby="users-hero-title"
+    >
       <div className="users-hero__inner">
         <div className="users-hero__content">
           <h1 id="users-hero-title">
-            {copy.headline}{' '}
-            <span>{copy.discount}</span>
+            {copy.headline} <span>{copy.discount}</span>
           </h1>
-          <p className="users-hero__description">
-            {copy.description}
-          </p>
+          <p className="users-hero__description">{copy.description}</p>
 
           <div className="users-hero__actions">
-            <Link href="/crear-cuenta" className="users-hero__button users-hero__button--primary">
+            <Link
+              href="/crear-cuenta"
+              className="users-hero__button users-hero__button--primary"
+            >
               <Icon icon={userPlusIcon} aria-hidden="true" />
               {copy.createAccount}
-              <Icon className="users-hero__trailing-icon" icon={arrowRightIcon} aria-hidden="true" />
+              <Icon
+                className="users-hero__trailing-icon"
+                icon={arrowRightIcon}
+                aria-hidden="true"
+              />
             </Link>
-            <a role="link" aria-disabled="true" title="Función pendiente" className="users-hero__button users-hero__button--download">
+            <a
+              role="link"
+              aria-disabled="true"
+              title="Función pendiente"
+              className="users-hero__button users-hero__button--download"
+            >
               <Icon icon={smartphoneIcon} aria-hidden="true" />
               {copy.download}
-              <Icon className="users-hero__trailing-icon" icon={downloadIcon} aria-hidden="true" />
+              <Icon
+                className="users-hero__trailing-icon"
+                icon={downloadIcon}
+                aria-hidden="true"
+              />
             </a>
           </div>
 
@@ -49,17 +66,35 @@ export default function UsersHero() {
           </Link>
 
           <ul className="users-hero__benefits" aria-label="Beneficios de Salvi">
-            <li><Icon icon={circleCheckIcon} aria-hidden="true" /> {copy.benefits[0]}</li>
-            <li><Icon icon={shieldCheckIcon} aria-hidden="true" /> {copy.benefits[1]}</li>
-            <li><Icon icon={leafIcon} aria-hidden="true" /> {copy.benefits[2]}</li>
+            <li>
+              <Icon icon={circleCheckIcon} aria-hidden="true" />{' '}
+              {copy.benefits[0]}
+            </li>
+            <li>
+              <Icon icon={shieldCheckIcon} aria-hidden="true" />{' '}
+              {copy.benefits[1]}
+            </li>
+            <li>
+              <Icon icon={leafIcon} aria-hidden="true" /> {copy.benefits[2]}
+            </li>
           </ul>
         </div>
 
         <div className="users-hero__visual">
           <div className="users-hero__card">
             <picture className="users-hero__mascot">
-              <source media="(prefers-reduced-motion: reduce)" srcSet="/assets/koty/salvando.svg" />
-              <Image src="/assets/koty/hello.gif" alt="Koty, la mascota de Salvi, saludando" width={360} height={360} unoptimized priority />
+              <source
+                media="(prefers-reduced-motion: reduce)"
+                srcSet="/assets/koty/salvando.svg"
+              />
+              <Image
+                src="/assets/koty/hello.gif"
+                alt="Koty, la mascota de Salvi, saludando"
+                width={360}
+                height={360}
+                unoptimized
+                priority
+              />
             </picture>
 
             <div className="users-hero__offer">
@@ -71,7 +106,9 @@ export default function UsersHero() {
             </div>
 
             <div className="users-hero__quality">
-              <span className="users-hero__quality-icon"><Icon icon={leafIcon} aria-hidden="true" /></span>
+              <span className="users-hero__quality-icon">
+                <Icon icon={leafIcon} aria-hidden="true" />
+              </span>
               <div>
                 <p>{copy.quality}</p>
                 <span>{copy.qualityDetail}</span>
@@ -83,4 +120,3 @@ export default function UsersHero() {
     </section>
   );
 }
-

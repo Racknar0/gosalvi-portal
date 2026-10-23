@@ -16,7 +16,9 @@
   background: #fffdf9;
   color: #765a4b;
   cursor: pointer;
-  transition: background-color 160ms ease, border-color 160ms ease;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
 }
 
 .country-selector__flag {
@@ -39,7 +41,7 @@
 }
 
 .country-selector__trigger:hover,
-.country-selector__trigger[aria-expanded="true"] {
+.country-selector__trigger[aria-expanded='true'] {
   border-color: #d7b58e;
   background: #fff0dc;
 }
@@ -90,7 +92,9 @@
 }
 
 @media (max-width: 1000px) {
-  .country-selector--desktop { display: none; }
+  .country-selector--desktop {
+    display: none;
+  }
   .country-selector--mobile {
     display: flex;
     width: 52px;

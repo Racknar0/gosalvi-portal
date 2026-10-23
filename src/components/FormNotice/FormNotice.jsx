@@ -5,5 +5,16 @@ import './FormNotice.scss';
 
 export default function FormNotice({ children, success = false }) {
   if (!children) return null;
-  return <div className={`form-notice${success ? ' form-notice--success' : ''}`} role={success ? 'status' : 'alert'}><Icon icon={success ? circleCheckIcon : circleAlertIcon} aria-hidden="true" /><div>{children}</div></div>;
+  return (
+    <div
+      className={`form-notice${success ? ' form-notice--success' : ''}`}
+      role={success ? 'status' : 'alert'}
+    >
+      <Icon
+        icon={success ? circleCheckIcon : circleAlertIcon}
+        aria-hidden="true"
+      />
+      <div>{children}</div>
+    </div>
+  );
 }

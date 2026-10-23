@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import axiosInstance from './AxiosInterceptor.js';
 
@@ -25,13 +25,15 @@ export default class HttpService {
   }
 
   async postFormData(url, data) {
-    return axiosInstance.post(url, data, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    }).then((response) => {
-      // console.log('Response createFormData ------------------------:');
-      // console.log(JSON.stringify(response, null, 2));
-      return response;
-    });
+    return axiosInstance
+      .post(url, data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then((response) => {
+        // console.log('Response createFormData ------------------------:');
+        // console.log(JSON.stringify(response, null, 2));
+        return response;
+      });
   }
 
   async putData(url, id, data) {
@@ -44,13 +46,15 @@ export default class HttpService {
 
   async putFormData(url, id, data) {
     // await new Promise((resolve) => setTimeout(resolve, 2000));
-    return axiosInstance.patch(`${url}/${id}`, data, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    }).then((response) => {
-      // console.log('Response updateFormData ------------------------:');
-      // console.log(JSON.stringify(response, null, 2));
-      return response;
-    });
+    return axiosInstance
+      .patch(`${url}/${id}`, data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then((response) => {
+        // console.log('Response updateFormData ------------------------:');
+        // console.log(JSON.stringify(response, null, 2));
+        return response;
+      });
   }
 
   async deleteData(url, id) {
@@ -76,10 +80,12 @@ export default class HttpService {
   }
 
   async patchFormData(url, data) {
-    return axiosInstance.patch(url, data, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    }).then((response) => {
-      return response;
-    });
+    return axiosInstance
+      .patch(url, data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then((response) => {
+        return response;
+      });
   }
 }

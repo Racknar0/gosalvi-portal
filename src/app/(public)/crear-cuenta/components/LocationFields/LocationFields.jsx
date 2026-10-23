@@ -8,7 +8,10 @@ import './LocationFields.scss';
 
 export default function LocationFields({ countries, initialCities }) {
   const country = useCountry();
-  const [citySelection, setCitySelection] = useState({ country: DEFAULT_LOCATION.countryCode, value: DEFAULT_LOCATION.cityId });
+  const [citySelection, setCitySelection] = useState({
+    country: DEFAULT_LOCATION.countryCode,
+    value: DEFAULT_LOCATION.cityId,
+  });
   const city = citySelection.country === country ? citySelection.value : '';
   const [cities, setCities] = useState(initialCities);
   const [error, setError] = useState('');
@@ -29,13 +32,19 @@ export default function LocationFields({ countries, initialCities }) {
       startTransition(async () => {
         try {
           const options = await loadCountryCities(country);
-          if (active && sequence === requestSequence.current) setCities(options);
+          if (active && sequence === requestSequence.current)
+            setCities(options);
         } catch {
-          if (active && sequence === requestSequence.current) setError('No pudimos cargar las ciudades. Vuelve a elegir el país para intentarlo de nuevo.');
+          if (active && sequence === requestSequence.current)
+            setError(
+              'No pudimos cargar las ciudades. Vuelve a elegir el país para intentarlo de nuevo.',
+            );
         }
       });
     });
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, [country, initialCities]);
 
   function changeCountry(event) {
@@ -44,15 +53,77 @@ export default function LocationFields({ countries, initialCities }) {
     setCountry(code);
   }
 
-  const message = error || (pending ? 'Cargando ciudades…' : country && !cities.length ? 'No hay ciudades disponibles para este país. Podés continuar sin ubicación.' : '');
+  const message =
+    error ||
+    (pending
+      ? 'Cargando ciudades…'
+      : country && !cities.length
+        ? 'No hay ciudades disponibles para este país. Podés continuar sin ubicación.'
+        : '');
 
   return (
     <div className="registration-location">
       <div className="registration__row">
-        <label htmlFor="register-country"><span>País <span className="registration-location__optional">(opcional)</span></span><select id="register-country" name="country" autoComplete="country" value={country} onChange={changeCountry}>{countries.map(({ code, name }) => <option key={code} value={code}>{name}</option>)}</select></label>
-        <label htmlFor="register-city"><span>Ciudad <span className="registration-location__optional">(opcional)</span></span><select id="register-city" name="city" autoComplete="address-level2" value={city} onChange={(event) => setCitySelection({ country, value: event.target.value })} disabled={!country || pending || !cities.length} aria-busy={pending} aria-describedby={message ? 'register-location-status' : undefined}><option value="">{pending ? 'Cargando ciudades…' : country === 'CO' ? 'Elige una ciudad' : 'Elegí una ciudad'}</option>{cities.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}</select></label>
+        <label htmlFor="register-country">
+          <span>
+            País{' '}
+            <span className="registration-location__optional">(opcional)</span>
+          </span>
+          <select
+            id="register-country"
+            name="country"
+            autoComplete="country"
+            value={country}
+            onChange={changeCountry}
+          >
+            {countries.map(({ code, name }) => (
+              <option key={code} value={code}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="register-city">
+          <span>
+            Ciudad{' '}
+            <span className="registration-location__optional">(opcional)</span>
+          </span>
+          <select
+            id="register-city"
+            name="city"
+            autoComplete="address-level2"
+            value={city}
+            onChange={(event) =>
+              setCitySelection({ country, value: event.target.value })
+            }
+            disabled={!country || pending || !cities.length}
+            aria-busy={pending}
+            aria-describedby={message ? 'register-location-status' : undefined}
+          >
+            <option value="">
+              {pending
+                ? 'Cargando ciudades…'
+                : country === 'CO'
+                  ? 'Elige una ciudad'
+                  : 'Elegí una ciudad'}
+            </option>
+            {cities.map(({ value, label }) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
-      {message && <p id="register-location-status" className="registration-location__status" role="status">{message}</p>}
+      {message && (
+        <p
+          id="register-location-status"
+          className="registration-location__status"
+          role="status"
+        >
+          {message}
+        </p>
+      )}
     </div>
   );
 }

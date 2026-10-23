@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { create } from 'zustand';
 import { subscribeWithSelector } from 'zustand/middleware';

@@ -7,7 +7,13 @@ import { useCountry } from '@/helpers/countryPreference';
 import 'react-phone-number-input/style.css';
 import './PhoneField.scss';
 
-export default function PhoneField({ id, name = 'phone', value, onChange, required = false }) {
+export default function PhoneField({
+  id,
+  name = 'phone',
+  value,
+  onChange,
+  required = false,
+}) {
   const country = useCountry();
   return (
     <PhoneInput

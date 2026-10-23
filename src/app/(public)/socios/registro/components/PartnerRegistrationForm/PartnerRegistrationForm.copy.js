@@ -1,8 +1,12 @@
 const sharedCopy = {
-  password: 'Contraseña', confirmation: 'Confirmar contraseña',
-  credentialsHint: 'Si ya tienes cuenta en Salvi, usa el mismo correo y contraseña.',
-  passwordHint: 'Al menos 8 caracteres. Máximo 72 bytes.', mismatch: 'Las contraseñas no coinciden.',
-  pending: 'Enviando solicitud…', tooLong: 'La contraseña supera el máximo de 72 bytes. Usa menos caracteres.',
+  password: 'Contraseña',
+  confirmation: 'Confirmar contraseña',
+  credentialsHint:
+    'Si ya tienes cuenta en Salvi, usa el mismo correo y contraseña.',
+  passwordHint: 'Al menos 8 caracteres. Máximo 72 bytes.',
+  mismatch: 'Las contraseñas no coinciden.',
+  pending: 'Enviando solicitud…',
+  tooLong: 'La contraseña supera el máximo de 72 bytes. Usa menos caracteres.',
   formLabel: 'Registrar mi negocio',
   businessTitle: '2. Datos del negocio',
   businessName: 'Nombre del negocio',
@@ -16,19 +20,25 @@ const sharedCopy = {
   mainBranch: 'Sede central',
   removeBranch: 'Quitar sucursal',
   ownLocalQuestion: '¿La marca tiene locales propios?',
-  ownLocalDefinition: 'Son los locales operados directamente por la marca, sin un franquiciado.',
+  ownLocalDefinition:
+    'Son los locales operados directamente por la marca, sin un franquiciado.',
   ownLocalYes: 'Sí, quiero registrar locales propios',
   ownLocalNo: 'No, solo gestiono la marca y sus franquicias',
-  ownLocalHint: 'Podrás gestionar la marca y sus franquicias sin registrar un local propio.',
+  ownLocalHint:
+    'Podrás gestionar la marca y sus franquicias sin registrar un local propio.',
   ownBranches: 'Locales propios',
   groupLegalName: 'Razón social del grupo',
   groupBrands: '¿Qué marcas forman parte del grupo?',
   groupHint: 'Cada marca tendrá sus propias sucursales.',
   categories: {
-    panaderia: 'Panadería / Pastelería', cafeteria: 'Cafetería / Brunch',
-    rotiseria: 'Rotisería / Viandas', pizzeria: 'Pizzería / Empanadas', supermercado: 'Market / Almacén',
+    panaderia: 'Panadería / Pastelería',
+    cafeteria: 'Cafetería / Brunch',
+    rotiseria: 'Rotisería / Viandas',
+    pizzeria: 'Pizzería / Empanadas',
+    supermercado: 'Market / Almacén',
   },
-  unavailable: 'El registro todavía no está conectado. No se enviaron tus datos.',
+  unavailable:
+    'El registro todavía no está conectado. No se enviaron tus datos.',
   termsJoin: 'y la',
 };
 
@@ -36,22 +46,49 @@ export const partnerRegistrationCopy = {
   AR: {
     ...sharedCopy,
     brandsHint: 'Separá los nombres con comas.',
-    missingLocation: 'Confirmá la ubicación de cada local antes de enviar la solicitud.',
+    missingLocation:
+      'Confirmá la ubicación de cada local antes de enviar la solicitud.',
     chooseModel: '1. Elegí el tipo de negocio',
     models: {
-      direct_store: ['Negocio independiente', 'Mi negocio no pertenece a una franquicia.'],
-      franchisee: ['Franquiciado', 'Opero uno o más locales de una franquicia.'],
-      franchisor: ['Casa matriz', 'Represento una marca y su red de franquicias.'],
-      holding: ['Grupo empresarial', 'Represento un grupo con varias marcas o cadenas.'],
+      direct_store: [
+        'Negocio independiente',
+        'Mi negocio no pertenece a una franquicia.',
+      ],
+      franchisee: [
+        'Franquiciado',
+        'Opero uno o más locales de una franquicia.',
+      ],
+      franchisor: [
+        'Casa matriz',
+        'Represento una marca y su red de franquicias.',
+      ],
+      holding: [
+        'Grupo empresarial',
+        'Represento un grupo con varias marcas o cadenas.',
+      ],
     },
     infoTitle: '¿Cómo sumás tu comercio a Salvi?',
     info: [
-      ['Revisamos tu solicitud:', 'Te contactamos para coordinar los próximos pasos.'],
-      ['Vos elegís el horario de retiro:', 'Definí cuándo pueden pasar a buscar los pedidos.'],
-      ['Gestioná cada sucursal:', 'Cada local tiene sus propios packs y pedidos.'],
-      ['Vendé tus excedentes:', 'Ofrecé la comida que te sobra del día en packs con descuento.'],
+      [
+        'Revisamos tu solicitud:',
+        'Te contactamos para coordinar los próximos pasos.',
+      ],
+      [
+        'Vos elegís el horario de retiro:',
+        'Definí cuándo pueden pasar a buscar los pedidos.',
+      ],
+      [
+        'Gestioná cada sucursal:',
+        'Cada local tiene sus propios packs y pedidos.',
+      ],
+      [
+        'Vendé tus excedentes:',
+        'Ofrecé la comida que te sobra del día en packs con descuento.',
+      ],
     ],
-    taxName: 'CUIT', taxExample: 'Ej.: 30-71234567-9', legalNameHint: 'Nombre con el que está registrado el negocio.',
+    taxName: 'CUIT',
+    taxExample: 'Ej.: 30-71234567-9',
+    legalNameHint: 'Nombre con el que está registrado el negocio.',
     submit: 'Enviar solicitud',
     addBranch: 'Agregar sucursal',
     optional: 'Opcional',
@@ -75,22 +112,49 @@ export const partnerRegistrationCopy = {
   CO: {
     ...sharedCopy,
     brandsHint: 'Separa los nombres con comas.',
-    missingLocation: 'Confirma la ubicación de cada local antes de enviar la solicitud.',
+    missingLocation:
+      'Confirma la ubicación de cada local antes de enviar la solicitud.',
     chooseModel: '1. Elige el tipo de negocio',
     models: {
-      direct_store: ['Negocio independiente', 'Mi negocio no pertenece a una franquicia.'],
-      franchisee: ['Franquiciado', 'Opero uno o más locales de una franquicia.'],
-      franchisor: ['Casa matriz', 'Represento una marca y su red de franquicias.'],
-      holding: ['Grupo empresarial', 'Represento un grupo con varias marcas o cadenas.'],
+      direct_store: [
+        'Negocio independiente',
+        'Mi negocio no pertenece a una franquicia.',
+      ],
+      franchisee: [
+        'Franquiciado',
+        'Opero uno o más locales de una franquicia.',
+      ],
+      franchisor: [
+        'Casa matriz',
+        'Represento una marca y su red de franquicias.',
+      ],
+      holding: [
+        'Grupo empresarial',
+        'Represento un grupo con varias marcas o cadenas.',
+      ],
     },
     infoTitle: '¿Cómo registras tu negocio en Salvi?',
     info: [
-      ['Revisamos tu solicitud:', 'Te contactamos para acordar los siguientes pasos.'],
-      ['Tú eliges el horario de recogida:', 'Define cuándo pueden recoger los pedidos.'],
-      ['Administra cada sede:', 'Cada sede tiene sus propios combos y pedidos.'],
-      ['Aprovecha tus productos disponibles:', 'Ofrece los productos frescos que te quedan al final del día con descuento.'],
+      [
+        'Revisamos tu solicitud:',
+        'Te contactamos para acordar los siguientes pasos.',
+      ],
+      [
+        'Tú eliges el horario de recogida:',
+        'Define cuándo pueden recoger los pedidos.',
+      ],
+      [
+        'Administra cada sede:',
+        'Cada sede tiene sus propios combos y pedidos.',
+      ],
+      [
+        'Aprovecha tus productos disponibles:',
+        'Ofrece los productos frescos que te quedan al final del día con descuento.',
+      ],
     ],
-    taxName: 'NIT', taxExample: 'Ej.: 900.123.456-7', legalNameHint: 'Nombre legal con el que está registrado el negocio.',
+    taxName: 'NIT',
+    taxExample: 'Ej.: 900.123.456-7',
+    legalNameHint: 'Nombre legal con el que está registrado el negocio.',
     submit: 'Enviar registro',
     addBranch: 'Agregar sucursal',
     optional: 'Opcional',

@@ -1,5 +1,9 @@
 import './RequiredMark.scss';
 
 export default function RequiredMark() {
-  return <span className="required-mark" aria-hidden="true">*</span>;
+  return (
+    <span className="required-mark" aria-hidden="true">
+      *
+    </span>
+  );
 }

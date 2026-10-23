@@ -11,14 +11,15 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 # Directrices del Agente
 
 ## Stack y restricciones de entorno
+
 - Next.js (App Router), React, JavaScript/JSX, Axios, Zustand y SCSS.
 - No instalar dependencias ni modificar `package.json` sin autorización explícita.
 - No refactorizar código fuera del alcance de la tarea.
 - No crear carpetas, archivos placeholder ni `.gitkeep` vacíos.
 - Todos los SCSS deben tener identacion de 2 espacios y no usar `!important`.
 
-
 ## Estructura y organización
+
 - Árbol base:
   ```text
   src/
@@ -34,6 +35,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Mantener SCSS puro: no añadir Tailwind, Bootstrap ni librerías de estilos.
 
 ## Reglas críticas de ejecución
+
 - Server Components por defecto. Solo usar `"use client"` en la frontera que requiera hooks, eventos o interactividad.
 - No acceder a `window`, `document` o `localStorage` durante el render inicial en servidor.
 - Peticiones HTTP centralizadas: toda llamada pasa por `src/services/`. Nunca invocar `fetch` o `axios` directamente en componentes ni en stores.
@@ -42,11 +44,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Leer Zustand fuera de React únicamente mediante `useStore.getState()`.
 
 ## Validación
-- Comprobar que el código compile ejecutando `npm run lint` 
+
+- Comprobar que el código compile ejecutando `npm run lint`
 - Al terminar, listar los archivos modificados y los puntos pendientes.
 
-
 ## Despliegue de producción — Gosalvi
+
 - El frontend de Gosalvi se publica desde la rama `master` del repositorio `Racknar0/gosalvi-portal`.
 - Para cambios del frontend, ejecuta `u_front_gosavi` con privilegios de administrador del VPS. Debe desplegar únicamente el frontend Gosalvi y reiniciar el proceso PM2 `gosalvi-front`.
 - El frontend de producción está en `/opt/gosalvi/front`. Nginx Proxy Manager envía `gosalvi.com` y `www.gosalvi.com` al proceso Next en `172.19.0.1:3200`.

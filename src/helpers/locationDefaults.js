@@ -3,7 +3,11 @@ export const SUPPORTED_COUNTRIES = [
   { code: 'CO', name: 'Colombia', mapCenter: [4.6097, -74.0817] },
 ];
 
-export const BUENOS_AIRES_CITY = { city: 'Buenos Aires', cityId: 'C::Buenos Aires', provinceId: 'C' };
+export const BUENOS_AIRES_CITY = {
+  city: 'Buenos Aires',
+  cityId: 'C::Buenos Aires',
+  provinceId: 'C',
+};
 
 export const DEFAULT_LOCATION = {
   countryCode: 'AR',

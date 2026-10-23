@@ -2,7 +2,9 @@
   display: flex;
   padding: 0 24px;
   flex-direction: column;
-  background: radial-gradient(ellipse at 75% 15%, #fff0db 0, transparent 45%), radial-gradient(ellipse at 25% 85%, #edf6e9 0, transparent 40%), #fff8f0;
+  background:
+    radial-gradient(ellipse at 75% 15%, #fff0db 0, transparent 45%),
+    radial-gradient(ellipse at 25% 85%, #edf6e9 0, transparent 40%), #fff8f0;
   color: #4a2515;
   font-size: 14px;
   line-height: 1.5;
@@ -82,7 +84,7 @@
   font-weight: 700;
 }
 
-.partner-form :where(input:not([type="checkbox"]):not([type="radio"]), select) {
+.partner-form :where(input:not([type='checkbox']):not([type='radio']), select) {
   width: 100%;
   min-width: 0;
   padding: 13px 16px;

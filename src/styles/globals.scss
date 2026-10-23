@@ -1,14 +1,14 @@
-@use "./typography";
-@use "./spacing";
+@use './typography';
+@use './spacing';
 
-*  {
+* {
   box-sizing: border-box;
 }
-html  {
+html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--public-anchor-offset, 128px);
 }
-body  {
+body {
   margin: 0;
   font-size: var(--text-body);
   font-weight: var(--weight-regular);
@@ -17,35 +17,45 @@ body  {
   font-synthesis: none;
   font-family: var(--font-sans);
 }
-a  {
+a {
   color: inherit;
   text-decoration: none;
 }
-button, input, select, textarea  {
+button,
+input,
+select,
+textarea {
   font: inherit;
 }
-button  {
+button {
   cursor: pointer;
 }
-img  {
+img {
   max-width: 100%;
 }
-button, a  {
+button,
+a {
   touch-action: manipulation;
 }
 
-[role="link"][aria-disabled="true"] {
+[role='link'][aria-disabled='true'] {
   cursor: not-allowed;
 }
-@media (prefers-reduced-motion: reduce)  {
-  html  {
+@media (prefers-reduced-motion: reduce) {
+  html {
     scroll-behavior: auto;
   }
-  *, *::before, *::after  {
-    animation-duration: .01ms;
-    transition-duration: .01ms;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms;
+    transition-duration: 0.01ms;
   }
 }
 
-:is(h1, h2, h3, h4) { text-wrap: balance; }
-:is(p, li) { text-wrap: pretty; }
+:is(h1, h2, h3, h4) {
+  text-wrap: balance;
+}
+:is(p, li) {
+  text-wrap: pretty;
+}

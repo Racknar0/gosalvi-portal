@@ -1,6 +1,12 @@
 .merchants-customer-banner {
   padding: var(--section-space) 24px;
-  background: radial-gradient(ellipse at top right, rgba(255, 177, 62, 0.32), transparent 65%), linear-gradient(110deg, #ce4b0a, #b73b08);
+  background:
+    radial-gradient(
+      ellipse at top right,
+      rgba(255, 177, 62, 0.32),
+      transparent 65%
+    ),
+    linear-gradient(110deg, #ce4b0a, #b73b08);
   color: #fff;
 }
 

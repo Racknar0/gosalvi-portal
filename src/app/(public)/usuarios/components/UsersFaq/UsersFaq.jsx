@@ -17,7 +17,10 @@ export default function UsersFaq() {
         </div>
         {copy.questions.map(({ question, answer }) => (
           <details className="users-faq__item" name="users-faq" key={question}>
-            <summary>{question}<Icon icon={chevronDownIcon} aria-hidden="true" /></summary>
+            <summary>
+              {question}
+              <Icon icon={chevronDownIcon} aria-hidden="true" />
+            </summary>
             <p>{answer}</p>
           </details>
         ))}
@@ -25,4 +28,3 @@ export default function UsersFaq() {
     </section>
   );
 }
-

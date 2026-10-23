@@ -36,7 +36,10 @@ export function setCountry(code) {
 }
 
 export function countryName(code) {
-  return SUPPORTED_COUNTRIES.find((country) => country.code === code)?.name || 'Argentina';
+  return (
+    SUPPORTED_COUNTRIES.find((country) => country.code === code)?.name ||
+    'Argentina'
+  );
 }
 
 export function countryText(code, argentina, colombia) {

@@ -155,7 +155,7 @@
   font-weight: 700;
 }
 
-.registration input:not([type="checkbox"]) {
+.registration input:not([type='checkbox']) {
   width: 100%;
   min-width: 0;
   min-height: 52px;
@@ -311,7 +311,6 @@
   .registration__back {
     left: 16px;
   }
-
 }
 
 @media (max-width: 560px) {
@@ -325,7 +324,6 @@
   align-content: start;
   gap: 7px;
 }
-
 
 .registration__required-note {
   margin: 0 0 12px;
@@ -346,7 +344,7 @@
   line-height: 1.5;
 }
 
-.registration input[aria-invalid="true"] {
+.registration input[aria-invalid='true'] {
   border-color: #c13d32;
   background: #fff9f8;
 }
